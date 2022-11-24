@@ -2,7 +2,7 @@ version: '3.7'
 services:
   app:
     build: .
-    container_name: PCAC
+    container_name: PCAC-API
     ports:
       - 3333:3333
       - 9229:9229
