@@ -20,7 +20,7 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=ignite
-      - POSTGRESS_DB=pcac
+      - POSTGRES_DB=PCAC
     volumes:
       - pgdata:/data/postgres
 
