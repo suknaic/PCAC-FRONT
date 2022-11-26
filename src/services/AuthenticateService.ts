@@ -13,7 +13,6 @@ interface IResponse {
   usuario: {
     nome: string;
     avatar: string;
-    entidade: string;
   };
   token: string;
 }
@@ -21,9 +20,7 @@ interface IResponse {
 class AuthenticateService {
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const usuario = await prismaClient.usuario.findFirst({
-      where: {
-        email,
-      },
+      where: { email },
     });
 
     if (!usuario) throw new AppError('Email ou Senha Incorreto');
@@ -34,20 +31,13 @@ class AuthenticateService {
 
     const token = sign({}, process.env.SECRET_TOKEN, {
       subject: usuario.id,
-      expiresIn: 'id',
-    });
-
-    const entidade = await prismaClient.entidade.findFirst({
-      where: {
-        usuarioId: usuario.id,
-      },
+      expiresIn: '1d',
     });
 
     return {
       usuario: {
         nome: usuario.nome,
         avatar: usuario.image,
-        entidade: entidade.nome,
       },
       token,
     };
