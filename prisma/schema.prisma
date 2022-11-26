@@ -14,50 +14,51 @@ model Usuario {
   id           String        @id @default(uuid())
   image        String?
   nome         String
-  cpf          Int           @unique
+  cpf          String        @unique
   email        String        @unique
-  telefone     Int           @unique
-  senha        String?
-  endereco     Endereco      @relation(fields: [enderecoId], references: [id])
-  enderecoId   String
+  telefone     String[]      @unique
+  senha        String
+  isAdmin      Boolean       @default(false)
   createAt     DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   Solicitacoes Solicitacao[]
+  endereco     Endereco[]
   Mensagem     Mensagem[]
   Entidade     Entidade[]
 }
 
 model Endereco {
-  id        String     @id @default(uuid())
-  latitude  Decimal
-  longitude Decimal
-  rua       String
-  numero    Int
-  cidade    String
-  uf        String     @db.VarChar(2)
-  Entidade  Entidade[]
-  Usuario   Usuario[]
+  id         String    @id @default(uuid())
+  latitude   Decimal?
+  longitude  Decimal?
+  rua        String
+  numero     Int?
+  cidade     String
+  uf         String    @db.VarChar(2)
+  Entidade   Entidade? @relation(fields: [entidadeId], references: [id])
+  Usuario    Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId  String
+  entidadeId String?
 }
 
 model Entidade {
-  id         String   @id @default(uuid())
-  nome       String
-  tipo       String
-  telefone   String
-  detalhe    String?
-  endereco   Endereco @relation(fields: [enderecoId], references: [id])
-  enderecoId String
-  createAt   DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
-  usuarioId  String
+  id        String     @id @default(uuid())
+  nome      String
+  tipo      String
+  telefone  String?
+  detalhe   String?
+  endereco  Endereco[]
+  createAt  DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  usuario   Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId String
 }
 
 model Solicitacao {
   id         String     @id @default(uuid())
   tipo       String
   assunto    String
-  descricao  String
+  descricao  String?
   status     String
   finalizada Boolean    @default(false)
   Usuario    Usuario    @relation(fields: [usuarioId], references: [id])
@@ -72,19 +73,9 @@ model Mensagem {
   descricao     String?
   audio         String[]
   Solicitacao   Solicitacao? @relation(fields: [solicitacaoId], references: [id])
-  solicitacaoId String?
+  solicitacaoId String
   usuario       Usuario      @relation(fields: [usuarioId], references: [id])
   usuarioId     String
-  superuser     SuperUser    @relation(fields: [superUserId], references: [id])
-  superUserId   String
   createAt      DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
-}
-
-model SuperUser {
-  id       String     @id @default(uuid())
-  nome     String
-  email    String     @unique
-  senha    String
-  Mensagem Mensagem[]
 }
