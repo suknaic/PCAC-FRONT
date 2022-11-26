@@ -9,7 +9,9 @@
       // "@config/*": ["config/*"],
       // "@shared/*": ["shared/*"],
       // "@utils/*": ["utils/*"],
-      "@error/*": ["error/*"],
+      "@error/*": [
+        "error/*"
+      ],
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
