@@ -1,6 +1,7 @@
 import { AppError } from '@error/AppError';
 import { hash } from 'bcrypt';
-import { prismaClient } from 'prisma';
+
+import { prismaClient } from '../prisma';
 
 interface IRequest {
   image?: string;
