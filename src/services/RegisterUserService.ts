@@ -1,5 +1,6 @@
 import { AppError } from '@error/AppError';
 import { hash } from 'bcrypt';
+import { cpf as UserCpf } from 'cpf-cnpj-validator';
 
 import { prismaClient } from '../prisma';
 
@@ -8,7 +9,7 @@ interface IRequest {
   nome: string;
   cpf: string;
   email: string;
-  telefone: string;
+  telefone?: string;
   senha: string;
 }
 
@@ -24,9 +25,15 @@ class RegisterUserService {
     const emailExists = await prismaClient.usuario.findFirst({
       where: { email },
     });
-    const password = await hash(senha, 8);
+    if (emailExists) {
+      throw new AppError('email ja existe');
+    }
 
-    if (emailExists) throw new AppError('email ja existe');
+    if (!UserCpf.isValid(cpf)) {
+      throw new AppError('CPF invalido!');
+    }
+
+    const password = await hash(senha, 8);
 
     await prismaClient.usuario.create({
       data: { image, nome, cpf, email, telefone, senha: password },

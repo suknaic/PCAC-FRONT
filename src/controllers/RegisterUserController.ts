@@ -8,19 +8,15 @@ class RegisterUserController {
 
     const registerUserService = new RegisterUserService();
 
-    try {
-      registerUserService.execute({
-        image: avatar,
-        nome,
-        cpf,
-        email,
-        telefone,
-        senha,
-      });
-      return response.status(200).send();
-    } catch (error) {
-      return response.json({ error: error.message });
-    }
+    await registerUserService.execute({
+      image: avatar,
+      nome,
+      cpf,
+      email,
+      telefone,
+      senha,
+    });
+    return response.status(201).send();
   }
 }
 

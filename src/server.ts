@@ -1,5 +1,5 @@
-import 'dotenv/config';
 import 'express-async-errors';
+import 'dotenv/config';
 import { AppError } from '@error/AppError';
 import express, { NextFunction, Request, Response } from 'express';
 
