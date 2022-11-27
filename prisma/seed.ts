@@ -27,7 +27,17 @@ async function main() {
       senha: await hash('usuario', 8),
     },
   });
-  console.log({ admin, usuario });
+
+  const entidade = await prisma.entidade.create({
+    data: {
+      nome: 'escola perto de casa',
+      tipo: 'escola',
+      detalhe: 'perto de casa toda verde',
+      usuarioId: usuario.id,
+    },
+  });
+
+  console.log({ admin, usuario, entidade });
 }
 main()
   .then(async () => {

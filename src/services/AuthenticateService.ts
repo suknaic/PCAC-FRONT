@@ -13,6 +13,7 @@ interface IResponse {
   usuario: {
     nome: string;
     avatar: string;
+    entidade?: string;
   };
   token: string;
 }
@@ -34,10 +35,17 @@ class AuthenticateService {
       expiresIn: '1d',
     });
 
+    const entidade = await prismaClient.entidade.findFirst({
+      where: {
+        usuarioId: usuario.id,
+      },
+    });
+
     return {
       usuario: {
         nome: usuario.nome,
         avatar: usuario.image,
+        entidade: entidade.nome,
       },
       token,
     };
