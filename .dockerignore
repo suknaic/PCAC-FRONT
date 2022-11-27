@@ -1,4 +1,6 @@
 node_modules/
-.vscode
-.git
+.vscode/
+.git/
+.env
+.env.exemplo
 dockerfile
