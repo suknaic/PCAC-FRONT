@@ -40,12 +40,14 @@ class AuthenticateService {
         usuarioId: usuario.id,
       },
     });
-
     return {
       usuario: {
         nome: usuario.nome,
         avatar: usuario.image,
-        entidade: entidade.nome,
+        entidade:
+          entidade?.nome != null
+            ? entidade.nome
+            : 'não possui entidade cadastrada',
       },
       token,
     };

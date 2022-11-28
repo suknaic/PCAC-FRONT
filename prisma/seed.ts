@@ -4,18 +4,6 @@ import { hash } from 'bcrypt';
 const prisma = new PrismaClient();
 
 async function main() {
-  const admin = await prisma.usuario.upsert({
-    where: { email: 'admin@admin.com' },
-    update: {},
-    create: {
-      email: 'admin@admin.com',
-      nome: 'admin',
-      cpf: '12345678900',
-      telefone: '68992581641',
-      senha: await hash('admin', 8),
-      isAdmin: true,
-    },
-  });
   const usuario = await prisma.usuario.upsert({
     where: { email: 'usuario@usuario.com' },
     update: {},
@@ -25,6 +13,19 @@ async function main() {
       cpf: '12345678911',
       telefone: '68981006523',
       senha: await hash('usuario', 8),
+    },
+  });
+
+  const admin = await prisma.usuario.upsert({
+    where: { email: 'usuario2@usuario2.com' },
+    update: {},
+    create: {
+      email: 'usuario2@usuario2.com',
+      nome: 'diego suknaic',
+      cpf: '12345678922',
+      telefone: '68981006523',
+      senha: await hash('usuario2', 8),
+      isAdmin: true,
     },
   });
 
