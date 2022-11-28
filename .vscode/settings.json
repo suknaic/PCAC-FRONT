@@ -9,6 +9,7 @@
     "Entiti",
     "cnpj",
     "descricao",
-    "solicitacao"
+    "solicitacao",
+    "solicitacoes"
   ],
 }
