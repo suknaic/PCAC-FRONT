@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
@@ -32,12 +33,12 @@ model Endereco {
   latitude   Decimal?
   longitude  Decimal?
   rua        String
-  numero     Int?
+  numero     String?
   cidade     String
   uf         String    @db.VarChar(2)
   Entidade   Entidade? @relation(fields: [entidadeId], references: [id])
-  Usuario    Usuario   @relation(fields: [usuarioId], references: [id])
-  usuarioId  String
+  Usuario    Usuario?  @relation(fields: [usuarioId], references: [id])
+  usuarioId  String?
   entidadeId String?
 }
 

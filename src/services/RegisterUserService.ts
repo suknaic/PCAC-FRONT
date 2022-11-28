@@ -11,6 +11,14 @@ interface IRequest {
   email: string;
   telefone?: string;
   senha: string;
+  endereco: {
+    latitude: string;
+    longitude: string;
+    rua: string;
+    numero: number;
+    cidade: string;
+    uf: string;
+  };
 }
 
 class RegisterUserService {
@@ -21,6 +29,7 @@ class RegisterUserService {
     email,
     telefone,
     senha,
+    endereco,
   }: IRequest): Promise<void> {
     const emailExists = await prismaClient.usuario.findFirst({
       where: { email },
@@ -35,9 +44,32 @@ class RegisterUserService {
 
     const password = await hash(senha, 8);
 
-    await prismaClient.usuario.create({
-      data: { image, nome, cpf, email, telefone, senha: password },
-    });
+    const { latitude, longitude, rua, numero, cidade, uf } = endereco;
+
+    try {
+      await prismaClient.usuario.create({
+        data: {
+          image,
+          nome,
+          cpf,
+          email,
+          telefone,
+          senha: password,
+          endereco: {
+            create: {
+              latitude,
+              longitude,
+              rua,
+              numero,
+              cidade,
+              uf,
+            },
+          },
+        },
+      });
+    } catch (error) {
+      throw new AppError(error.message);
+    }
   }
 }
 
