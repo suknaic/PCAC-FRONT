@@ -44,6 +44,7 @@ model Endereco {
 
 model Entidade {
   id        String     @id @default(uuid())
+  image     String?
   nome      String
   tipo      String
   telefone  String?
