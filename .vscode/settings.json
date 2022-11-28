@@ -7,6 +7,8 @@
     "entidade",
     "endereco",
     "Entiti",
-    "cnpj"
+    "cnpj",
+    "descricao",
+    "solicitacao"
   ],
 }
