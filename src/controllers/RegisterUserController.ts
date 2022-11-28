@@ -27,7 +27,7 @@ class RegisterUserController {
     };
     const registerUserService = new RegisterUserService();
 
-    await registerUserService.execute({
+    const usuarioId = await registerUserService.execute({
       image: avatar,
       nome,
       cpf,
@@ -36,7 +36,7 @@ class RegisterUserController {
       senha,
       endereco,
     });
-    return response.status(201).send();
+    return response.json({ usuarioId });
   }
 }
 

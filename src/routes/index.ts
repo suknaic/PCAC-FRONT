@@ -1,11 +1,13 @@
 import { Router } from 'express';
 
 import { loginRoutes } from './loginRouter';
-import { registerRouter } from './registerRouter';
+import { registerEntitiRouter } from './registerEntitiRouter';
+import { registerUserRouter } from './registerUserRouter';
 
 const routers = Router();
 
 routers.use(loginRoutes);
-routers.use(registerRouter);
+routers.use(registerUserRouter);
+routers.use(registerEntitiRouter);
 
 export { routers };
