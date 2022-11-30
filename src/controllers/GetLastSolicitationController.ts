@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
-import { GetSolicitationService } from '../services/GetSolicitationService';
+import { UserGetSolicitationService } from '../services/UserGetSolicitationService';
 
 class GetLastSolicitationController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.user_id;
-    const getSolicitationService = new GetSolicitationService();
+    const getSolicitationService = new UserGetSolicitationService();
     const solicitations = await getSolicitationService.execute({
       usuarioId: id,
     });

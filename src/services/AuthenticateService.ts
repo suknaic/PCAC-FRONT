@@ -44,10 +44,7 @@ class AuthenticateService {
       usuario: {
         nome: usuario.nome,
         avatar: usuario.image,
-        entidade:
-          entidade?.nome != null
-            ? entidade.nome
-            : 'não possui entidade cadastrada',
+        entidade: entidade?.nome != null ? entidade.nome : '',
       },
       token,
     };

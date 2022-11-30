@@ -3,12 +3,17 @@ import { Router } from 'express';
 import { GetLastSolicitationController } from '../controllers/GetLastSolicitationController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
-const getLastSolicitationRouter = Router();
+const userGetLastSolicitationRouter = Router();
 const getLastSolicitationController = new GetLastSolicitationController();
-getLastSolicitationRouter.get(
+userGetLastSolicitationRouter.get(
   '/painel/solicitacao',
   ensureAuthenticated,
   getLastSolicitationController.handle
 );
 
-export { getLastSolicitationRouter };
+userGetLastSolicitationRouter.get(
+  '/painel/solicitacao/:id',
+  ensureAuthenticated
+);
+
+export { userGetLastSolicitationRouter };

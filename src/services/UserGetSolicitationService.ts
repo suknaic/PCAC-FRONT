@@ -6,7 +6,7 @@ interface IRequest {
   usuarioId: string;
 }
 
-class GetSolicitationService {
+class UserGetSolicitationService {
   async execute({ usuarioId }: IRequest): Promise<Solicitacao[]> {
     const solicitacoes = await prismaClient.solicitacao.findMany({
       where: { usuarioId },
@@ -23,4 +23,4 @@ class GetSolicitationService {
   }
 }
 
-export { GetSolicitationService };
+export { UserGetSolicitationService };
