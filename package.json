@@ -34,11 +34,11 @@
    "dependencies": {
       "@prisma/client": "^4.6.1",
       "bcrypt": "^5.1.0",
-      "body-parser": "^1.20.1",
       "cpf-cnpj-validator": "^1.0.3",
       "dotenv": "^16.0.3",
       "express": "^4.18.1",
       "express-async-errors": "^3.1.1",
+      "express-handlebars": "^6.0.6",
       "express-session": "^1.17.3",
       "jsonwebtoken": "^8.5.1",
       "multer": "^1.4.5-lts.1"
