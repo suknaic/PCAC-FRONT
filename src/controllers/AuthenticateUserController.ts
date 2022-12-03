@@ -17,6 +17,9 @@ class AuthenticateUserController {
       return response.json({ error: error.message });
     }
   }
+  async index(request: Request, response: Response): Promise<void> {
+    return response.render('index');
+  }
 }
 
 export { AuthenticateUserController };
