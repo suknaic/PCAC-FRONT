@@ -4,7 +4,7 @@
    "main": "index.js",
    "license": "MIT",
    "scripts": {
-      "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn ./src/server.ts"
+      "dev": "NODE_ENV=development ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn ./src/server.ts"
    },
    "prisma": {
       "seed": "ts-node-dev --transpile-only prisma/seed.ts"
@@ -12,6 +12,7 @@
    "devDependencies": {
       "@types/bcrypt": "^5.0.0",
       "@types/express": "^4.17.13",
+      "@types/express-session": "^1.17.5",
       "@types/jsonwebtoken": "^8.5.9",
       "@types/multer": "^1.4.7",
       "@types/node": "^16.11.10",
@@ -33,10 +34,12 @@
    "dependencies": {
       "@prisma/client": "^4.6.1",
       "bcrypt": "^5.1.0",
+      "body-parser": "^1.20.1",
       "cpf-cnpj-validator": "^1.0.3",
       "dotenv": "^16.0.3",
       "express": "^4.18.1",
       "express-async-errors": "^3.1.1",
+      "express-session": "^1.17.3",
       "jsonwebtoken": "^8.5.1",
       "multer": "^1.4.5-lts.1"
    }

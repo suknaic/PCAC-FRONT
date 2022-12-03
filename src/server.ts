@@ -1,12 +1,15 @@
 import 'express-async-errors';
 import 'dotenv/config';
 import { AppError } from '@error/AppError';
+import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
+import session from 'express-session';
 
 import { routers } from './routes';
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: process.env.SECRET_TOKEN }));
 app.use(routers);
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
