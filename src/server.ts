@@ -1,17 +1,28 @@
 import 'express-async-errors';
 import 'dotenv/config';
 import { AppError } from '@error/AppError';
-import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
+import { engine } from 'express-handlebars';
 import session from 'express-session';
-import { join, resolve } from 'path';
+import { resolve } from 'path';
 
 import { routers } from './routes';
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: process.env.SECRET_TOKEN }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.engine(
+  '.hbs',
+  engine({
+    extname: '.hbs',
+  })
+);
+app.set('view engine', '.hbs');
+app.set('views', resolve(__dirname, 'views'));
 app.use('/public', express.static(resolve(__dirname, '..', 'public')));
+
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
@@ -26,8 +37,9 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     message: err.message,
   });
 });
-
 app.use(routers);
-app.listen(process.env.PORT_SERVER, () =>
-  console.log(`servidor rodando na port ${process.env.PORT_SERVER}`)
-);
+
+app.listen(process.env.PORT_SERVER, () => {
+  console.log(`servidor rodando na port ${process.env.PORT_SERVER}`);
+  console.log(resolve(__dirname, 'views'));
+});
