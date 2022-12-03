@@ -4,14 +4,14 @@ import { AppError } from '@error/AppError';
 import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
 import session from 'express-session';
+import { join, resolve } from 'path';
 
 import { routers } from './routes';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: process.env.SECRET_TOKEN }));
-app.use(routers);
-
+app.use('/public', express.static(resolve(__dirname, '..', 'public')));
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
@@ -27,6 +27,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   });
 });
 
+app.use(routers);
 app.listen(process.env.PORT_SERVER, () =>
   console.log(`servidor rodando na port ${process.env.PORT_SERVER}`)
 );
