@@ -5,6 +5,6 @@ const loginRoutes = Router();
 
 const authenticateUser = new AuthenticateUserController();
 loginRoutes.get('/', authenticateUser.index);
-loginRoutes.post('/', authenticateUser.handle);
+loginRoutes.post('/', authenticateUser.create);
 
 export { loginRoutes };
