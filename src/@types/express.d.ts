@@ -1,7 +1,9 @@
-declare namespace Express {
+import session from 'express-session';
+
+declare module 'express-session' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  export interface Request {
-    user_id: {
+  export interface SessionData {
+    user: {
       id: string;
     };
   }
