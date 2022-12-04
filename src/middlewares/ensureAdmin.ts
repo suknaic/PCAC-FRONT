@@ -1,4 +1,3 @@
-import { AppError } from '@error/AppError';
 import { NextFunction, Request, Response } from 'express';
 
 import { prismaClient } from '../prisma';
@@ -8,13 +7,15 @@ async function ensureAdmin(
   response: Response,
   next: NextFunction
 ) {
-  const { id } = request.user_id;
+  const { id } = request.session.user;
 
   const usuario = await prismaClient.usuario.findFirst({
-    where: { id },
+    where: { id, isAdmin: true },
   });
 
-  if (!usuario.isAdmin) throw new AppError("user ins't admin");
+  if (!usuario) {
+    response.redirect('/');
+  }
   next();
 }
 
