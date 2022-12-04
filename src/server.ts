@@ -9,7 +9,13 @@ import { resolve } from 'path';
 import { routers } from './routes';
 
 const app = express();
-app.use(session({ secret: process.env.SECRET_TOKEN }));
+app.use(
+  session({
+    secret: process.env.SECRET_TOKEN,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -41,5 +47,4 @@ app.use(routers);
 
 app.listen(process.env.PORT_SERVER, () => {
   console.log(`servidor rodando na port ${process.env.PORT_SERVER}`);
-  console.log(resolve(__dirname, 'views'));
 });
