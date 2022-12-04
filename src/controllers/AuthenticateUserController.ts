@@ -2,19 +2,21 @@ import { Request, Response } from 'express';
 import { AuthenticateService } from 'services/AuthenticateService';
 
 class AuthenticateUserController {
-  async create(request: Request, response: Response): Promise<Response> {
+  async create(request: Request, response: Response): Promise<void> {
     const { email, password } = request.body;
-
     const authenticateService = new AuthenticateService();
     try {
-      const { usuario, token } = await authenticateService.execute({
+      const { usuario } = await authenticateService.execute({
         email,
         password,
       });
+      request.session.user = {
+        id: usuario.id,
+      };
 
-      return response.json({ usuario, token });
+      response.render('painel', { usuario });
     } catch (error) {
-      return response.json({ error: error.message });
+      response.render('index', { error });
     }
   }
   async index(request: Request, response: Response): Promise<void> {

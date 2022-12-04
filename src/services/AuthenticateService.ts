@@ -1,6 +1,5 @@
 import { AppError } from '@error/AppError';
 import { compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
 
 import { prismaClient } from '../prisma';
 
@@ -11,11 +10,11 @@ interface IRequest {
 
 interface IResponse {
   usuario: {
+    id: string;
     nome: string;
     avatar: string;
     entidade?: string;
   };
-  token: string;
 }
 
 class AuthenticateService {
@@ -30,11 +29,6 @@ class AuthenticateService {
 
     if (!conferirSenha) throw new AppError('Email ou Senha Incorreto');
 
-    const token = sign({}, process.env.SECRET_TOKEN, {
-      subject: usuario.id,
-      expiresIn: '1d',
-    });
-
     const entidade = await prismaClient.entidade.findFirst({
       where: {
         usuarioId: usuario.id,
@@ -42,11 +36,11 @@ class AuthenticateService {
     });
     return {
       usuario: {
+        id: usuario.id,
         nome: usuario.nome,
         avatar: usuario.image,
         entidade: entidade?.nome != null ? entidade.nome : '',
       },
-      token,
     };
   }
 }
