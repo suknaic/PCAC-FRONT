@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AuthenticateService } from 'services/AuthenticateService';
 
 class AuthenticateUserController {
-  async handle(request: Request, response: Response): Promise<Response> {
+  async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 
     const authenticateService = new AuthenticateService();
