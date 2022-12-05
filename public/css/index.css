@@ -1,3 +1,12 @@
+
 body {
   background-color: #084298;
 }
+.cadusuario {
+  max-width: 700px;
+}
+.titulo {
+  color: #04245B;
+}
+
+#map { height: 350px; }

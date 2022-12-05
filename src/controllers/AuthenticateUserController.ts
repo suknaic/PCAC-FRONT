@@ -13,7 +13,7 @@ class AuthenticateUserController {
       request.session.user = {
         id: usuario.id,
       };
-
+      delete usuario.id;
       response.render('painel', { usuario });
     } catch (error) {
       response.render('index', { error });
