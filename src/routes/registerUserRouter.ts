@@ -9,10 +9,11 @@ const registerUserController = new RegisterUserController();
 
 const avatarUpload = Multer(uploadConfig.upload('avatar'));
 
+registerUserRouter.get('/cadastro', registerUserController.index);
 registerUserRouter.post(
   '/cadastro',
   avatarUpload.single('avatar'),
-  registerUserController.handle
+  registerUserController.create
 );
 
 export { registerUserRouter };

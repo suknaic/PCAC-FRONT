@@ -10,6 +10,7 @@
     "cnpj",
     "descricao",
     "solicitacao",
-    "solicitacoes"
+    "solicitacoes",
+    "middlewares"
   ],
 }
