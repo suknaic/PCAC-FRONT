@@ -111,7 +111,7 @@
         action='/cadastro'
         method='POST'
         class='needs-validation'
-        enctype="multipart/form-data"
+        enctype='multipart/form-data'
         novalidate=''
       >
         <div class='row g-3'>
@@ -158,11 +158,10 @@
               id='nomecompleto'
               name='nome'
               placeholder=''
-              value=''
               required=''
             />
             <div class='invalid-feedback'>
-              Valid first name is required.
+              informe seu nome completo
             </div>
           </div>
 
@@ -170,9 +169,15 @@
             <label for='cpf' class='form-label'>
               CPF
             </label>
-            <input type='cpf' class='form-control' id='cpf' name='cpf' />
+            <input
+              type='text'
+              class='form-control'
+              id='cpf'
+              name='cpf'
+              required=''
+            />
             <div class='invalid-feedback'>
-              Please enter a valid email address for shipping updates.
+              Informe um cpf válido
             </div>
           </div>
           <div class='col-12'>
@@ -185,9 +190,10 @@
               id='email'
               name='email'
               placeholder='email@example.com'
+              required=''
             />
             <div class='invalid-feedback'>
-              Please enter a valid email address for shipping updates.
+              Entre com um email válido!
             </div>
           </div>
 
@@ -204,7 +210,7 @@
               required=''
             />
             <div class='invalid-feedback'>
-              Por Favor preencha o campo com seu telefone
+             Informe um telefone válido!
             </div>
           </div>
           <div class='col-sm-6'>
@@ -215,12 +221,12 @@
               type='password'
               class='form-control'
               id='password'
-              name='password'
+              name='senha'
               placeholder='*****'
               required=''
             />
             <div class='invalid-feedback'>
-              Por Favor preencha o campo com seu telefone
+              Insira uma senha!
             </div>
           </div>
 
@@ -247,7 +253,7 @@
               required=''
             />
             <div class='invalid-feedback'>
-              cep code required.
+              Informe seu cep.
             </div>
           </div>
 
@@ -261,7 +267,11 @@
               id='rua'
               name='rua'
               placeholder='Nome da rua'
+              required=''
             />
+            <div class='invalid-feedback'>
+              Informe o nome da rua.
+            </div>
           </div>
 
           <div class='col-3'>
@@ -274,7 +284,11 @@
               id='numero'
               name='numero'
               placeholder='1111'
+              required=''
             />
+            <div class='invalid-feedback'>
+              Informe o número
+            </div>
           </div>
 
           <div class='col-md-5'>
@@ -285,12 +299,12 @@
               <option value=''>
                 Selecione...
               </option>
-              <option>
+              <option selected>
                 Brasil
               </option>
             </select>
             <div class='invalid-feedback'>
-              Please select a valid Pais.
+              informe o Pais
             </div>
           </div>
 
@@ -302,7 +316,7 @@
               <option value=''>
                 Selecione...
               </option>
-              <option>
+              <option selected>
                 AC
               </option>
             </select>
@@ -373,4 +387,24 @@ S
   crossorigin='anonymous'
 ></script>
 <script src='/public/js/imagepreview.js'></script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
