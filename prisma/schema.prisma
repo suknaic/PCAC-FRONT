@@ -32,6 +32,7 @@ model Endereco {
   latitude   Decimal?
   longitude  Decimal?
   cep        String?
+  bairro     String?
   rua        String
   numero     String?
   cidade     String
