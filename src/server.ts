@@ -1,6 +1,7 @@
 import 'express-async-errors';
 import 'dotenv/config';
 import { AppError } from '@error/AppError';
+import cors from 'cors';
 import express, { NextFunction, Request, Response } from 'express';
 import { engine } from 'express-handlebars';
 import session from 'express-session';
@@ -16,8 +17,9 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 app.use(express.json());
+app.use(cors());
 
 app.engine(
   '.hbs',
