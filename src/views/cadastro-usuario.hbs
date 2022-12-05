@@ -1,3 +1,4 @@
+{{error.message}}
 <div
   class='container text-bg-light p-5 mt-5 align-items-center cadusuario rounded-top'
 >
@@ -292,15 +293,15 @@
           </div>
 
           <div class='col-md-5'>
-            <label for='pais' class='form-label'>
-              Pais
+            <label for='cidade' class='form-label'>
+              Cidade
             </label>
-            <select class='form-select' id='pais' name='pais' required=''>
+            <select class='form-select' id='cidade' name='cidade' required=''>
               <option value=''>
                 Selecione...
               </option>
               <option selected>
-                Brasil
+               Rio Branco
               </option>
             </select>
             <div class='invalid-feedback'>
@@ -387,24 +388,5 @@ S
   crossorigin='anonymous'
 ></script>
 <script src='/public/js/imagepreview.js'></script>
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})()
-</script>
+<script src="/public/js/validaformulario.js"></script>
+<script src="/public/js/consularcep.js"></script>
