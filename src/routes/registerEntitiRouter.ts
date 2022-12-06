@@ -2,8 +2,8 @@ import { Router } from 'express';
 import Multer from 'multer';
 
 import uploadConfig from '../config/upload';
-import { RegisterEntitiController } from '../controllers/RegisterEntitiController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { RegisterEntitiController } from '../usecases/cadastroEntidade/RegisterEntitiController';
 
 const entidadeImage = Multer(uploadConfig.upload('entidadeImage'));
 

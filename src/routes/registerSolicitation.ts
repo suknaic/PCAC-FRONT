@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { RegisterSolicitationController } from '../controllers/RegisterSolicitationController';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { RegisterSolicitationController } from '../usecases/cadastroSolicitacao/RegisterSolicitationController';
 
 const registerSolicitation = Router();
 

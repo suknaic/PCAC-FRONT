@@ -2,7 +2,7 @@ import { Router } from 'express';
 import Multer from 'multer';
 
 import uploadConfig from '../config/upload';
-import { RegisterUserController } from '../controllers/RegisterUserController';
+import { RegisterUserController } from '../usecases/cadastroUsuario/RegisterUserController';
 
 const registerUserRouter = Router();
 const registerUserController = new RegisterUserController();
