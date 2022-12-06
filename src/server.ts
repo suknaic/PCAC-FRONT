@@ -14,7 +14,8 @@ app.use(
   session({
     secret: process.env.SECRET_TOKEN,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    // alterar para true quando finalizar o desenvolvimento
   })
 );
 app.use(express.urlencoded());
@@ -25,6 +26,11 @@ app.engine(
   '.hbs',
   engine({
     extname: '.hbs',
+    helpers: {
+      dateFormat: (date: string) => new Date(date).toLocaleDateString('en-GB'),
+      truncate: (data: string, tamanho: number) =>
+        `${data.slice(0, tamanho)} ...`,
+    },
   })
 );
 app.set('view engine', '.hbs');
