@@ -7,10 +7,12 @@
       <div class='row align-items-center text-center mb-4'>
         <div class='col titulo'>
           <h4 class='mb-3'>
-            CADASTRO DO LIDER
+            CADASTRO DA ENTIDADE
           </h4>
           <P>
-            Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua Entidade.
+            Finalize o cadastro,  da associações, cooperativas, movimentos, etc.
+            <br />
+            Entre na plataforma e ajude pessoas a encontrarem os casos da sua Entidade.
           </P>
         </div>
         <div class='col svg'>
@@ -109,7 +111,7 @@
         </div>
       </div>
       <form
-        action='/cadastro'
+        action='/cadastro/entidade'
         method='POST'
         class='needs-validation'
         enctype='multipart/form-data'
@@ -134,12 +136,12 @@
                                 aria-hidden='true'
                               ></i>
                               <div class='visible-xs-block'></div>
-                              Selecione Uma imagem de Perfil
+                              Selecione Uma imagem para o Perfil da Entidade
                             </div>
                           </div>
                         </div>
                       </div>
-                      <input name='avatar' type='file' id='fileField' />
+                      <input name='image' type='file' id='fileField' />
                     </label>
                   </div>
                 </div>
@@ -148,53 +150,54 @@
           </div>
           <div class='col-12'>
             <h4 class='pb-3 mt-3 titulo'>
-              Dados Pessoais
+              Dados
             </h4>
-            <label for='nomecompleto' class='form-label'>
-              Nome Completo
+            <label for='nome' class='form-label'>
+              Nome da Entidade
             </label>
             <input
               type='text'
               class='form-control'
-              id='nomecompleto'
+              id='nome'
               name='nome'
               placeholder=''
               required=''
             />
             <div class='invalid-feedback'>
-              informe seu nome completo
+              informar o nome da entidade
             </div>
           </div>
 
           <div class='col-12'>
-            <label for='cpf' class='form-label'>
-              CPF
+            <label for='cnpj' class='form-label'>
+              CNPJ
             </label>
             <input
               type='text'
               class='form-control'
-              id='cpf'
-              name='cpf'
+              id='cnpj'
+              name='cnpj'
               required=''
             />
             <div class='invalid-feedback'>
-              Informe um cpf válido
+              Informe um cnpj válido
             </div>
           </div>
-          <div class='col-12'>
-            <label for='email' class='form-label'>
-              Email
+
+          <div class='col-6'>
+            <label for='tipo' class='form-label'>
+              Selecione o Tipo
             </label>
-            <input
-              type='email'
-              class='form-control'
-              id='email'
-              name='email'
-              placeholder='email@example.com'
-              required=''
-            />
+            <select class='form-select' id='tipo' name='tipo' required=''>
+              <option value=''>
+                Selecione...
+              </option>
+              <option selected>
+                MEI
+              </option>
+            </select>
             <div class='invalid-feedback'>
-              Entre com um email válido!
+              selecione o tipo
             </div>
           </div>
 
@@ -211,30 +214,21 @@
               required=''
             />
             <div class='invalid-feedback'>
-             Informe um telefone válido!
+              Informe um telefone válido!
             </div>
           </div>
-          <div class='col-sm-6'>
-            <label for='password' class='form-label'>
-              Senha
+
+          <div class='col-12'>
+            <label for='detalhe' class='form-label'>
+              Fale um pouco sobre
             </label>
-            <input
-              type='password'
-              class='form-control'
-              id='password'
-              name='senha'
-              placeholder='*****'
-              required=''
-            />
-            <div class='invalid-feedback'>
-              Insira uma senha!
-            </div>
+            <textarea name="detalhe" class='form-control' id='detalhe'></textarea>
           </div>
 
           <hr class='my-4' />
 
           <h5 class='titulo'>
-            Marque seu endereço no Mapa
+            Marque a localização no Mapa
           </h5>
           <div class='col-12'>
             <div id='map'>
@@ -258,7 +252,7 @@
             </div>
           </div>
 
-           <div class='col-6'>
+          <div class='col-6'>
             <label for='cidade' class='form-label'>
               Cidade
             </label>
@@ -267,7 +261,7 @@
                 Selecione...
               </option>
               <option selected>
-               Rio Branco
+                Rio Branco
               </option>
             </select>
             <div class='invalid-feedback'>
@@ -292,7 +286,7 @@
             </div>
           </div>
 
-           <div class='col-5'>
+          <div class='col-5'>
             <label for='rua' class='form-label'>
               Rua
             </label>
@@ -342,19 +336,15 @@
               Informe o número
             </div>
           </div>
-
-
-
-
         </div>
         <input type='hidden' name='latitude' value='' />
         <input type='hidden' name='longitude' value='' />
-
+        <input type='hidden' name='usuarioId' value='{{usuarioId}}' />
 
         <hr class='my-4' />
 
         <button class='w-100 btn btn-primary btn-lg' type='submit'>
-          Continuar Cadastro
+          Cadastrar
         </button>
       </form>
     </div>
@@ -410,8 +400,8 @@ S
   integrity='sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ='
   crossorigin='anonymous'
 ></script>
-<script src="/public/js/jquery.mask.min.js"></script>
-<script src="/public/js/validaformulario.js"></script>
+<script src='/public/js/jquery.mask.min.js'></script>
+<script src='/public/js/validaformulario.js'></script>
 <script src='/public/js/imagepreview.js'></script>
-<script src="/public/js/consultacep.js"></script>
-<script src="/public/js/getcidade.js"></script>
+<script src='/public/js/consultacep.js'></script>
+<script src='/public/js/getcidade.js'></script>

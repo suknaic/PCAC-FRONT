@@ -33,7 +33,8 @@ class RegisterEntitiService {
       where: { id: usuarioId },
     });
 
-    if (!usuarioExist) throw new AppError('Error, Usuario nao existe');
+    if (!usuarioExist) throw new AppError('Usuario nao existe');
+
     const { latitude, longitude, rua, numero, cidade, uf } = endereco;
     try {
       await prismaClient.entidade.create({
