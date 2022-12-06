@@ -38,6 +38,9 @@ class RegisterUserController {
         senha,
         endereco,
       });
+      request.session.user = {
+        id: usuarioId,
+      };
       response.render('cadastro-entidade', { usuarioId });
     } catch (error) {
       response.render('cadastro-usuario', { error });
