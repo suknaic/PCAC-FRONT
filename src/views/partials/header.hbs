@@ -1,17 +1,23 @@
 <nav class='navbar navbar-expand-lg bg-light sticky-top'>
   <div class='container'>
-    <a class='navbar-brand ' href='#'>
+    <a class='navbar-brand titulo h1' href='#'>
       <img
-        src='/public/img/avatar.png'
+        src='/avatar/{{usuario.image}}'
         height='50px'
         alt='logo protagonismo colaborativo'
         class="rounded"
-      />
-      Felipe Suknaic
+        />
+      {{usuario.nome}}
     </a>
-    <h5></h5>
 
 
+    <a class='navbar-brand ' href='#'>
+      <img
+        src='/public/img/protagonismo-vertical.svg'
+        height='50px'
+        alt='logo protagonismo colaborativo'
+      />
+    </a>
     <div class='d-flex'>
       <div class='btn-group' role='group' aria-label='Basic example'>
         <button
