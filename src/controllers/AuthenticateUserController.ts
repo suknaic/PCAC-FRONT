@@ -14,7 +14,7 @@ class AuthenticateUserController {
         id: usuario.id,
       };
       delete usuario.id;
-      response.render('painel', { usuario });
+      response.redirect('painel');
     } catch (error) {
       response.render('index', { error });
     }

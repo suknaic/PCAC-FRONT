@@ -11,9 +11,6 @@ interface IRequest {
 interface IResponse {
   usuario: {
     id: string;
-    nome: string;
-    avatar: string;
-    entidade?: string;
   };
 }
 
@@ -28,18 +25,9 @@ class AuthenticateService {
     const conferirSenha = await compare(password, usuario.senha);
 
     if (!conferirSenha) throw new AppError('Email ou Senha Incorreto');
-
-    const entidade = await prismaClient.entidade.findFirst({
-      where: {
-        usuarioId: usuario.id,
-      },
-    });
     return {
       usuario: {
         id: usuario.id,
-        nome: usuario.nome,
-        avatar: usuario.image,
-        entidade: entidade?.nome != null ? entidade.nome : '',
       },
     };
   }

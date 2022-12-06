@@ -10,7 +10,7 @@ const solicitationController = new RegisterSolicitationController();
 registerSolicitation.post(
   '/painel/solicitacao',
   ensureAuthenticated,
-  solicitationController.handle
+  solicitationController.create
 );
 
 export { registerSolicitation };
