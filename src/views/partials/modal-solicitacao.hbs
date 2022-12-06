@@ -1,0 +1,88 @@
+<!-- Modal -->
+<div
+  class='modal fade'
+  id='staticBackdrop'
+  data-bs-backdrop='static'
+  data-bs-keyboard='false'
+  tabindex='-1'
+  aria-labelledby='staticBackdropLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'>
+    <div class='modal-content bg-light'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-3 lh-1 titulo' id='staticBackdropLabel'>
+          CADASTRAR NOVA SOLICITAÇÃO
+        </h1>
+      </div>
+      <div class='modal-body'>
+        <form
+          action='/painel/solicitacao'
+          method='POST'
+          class='needs-validation'
+          enctype='multipart/form-data'
+          novalidate=''
+        >
+          <div class='mb-3'>
+            <select class='form-select' id='tipo' name='tipo' required=''>
+              <option value='' selected>
+                TIPO DE SOLICITAÇÃO...
+              </option>
+              <option>
+                MEI
+              </option>
+            </select>
+            <div class='invalid-feedback'>
+              Selecione o tipo
+            </div>
+          </div>
+          <div class='mb-3 input-group-lg'>
+            <input
+              type='text'
+              class='form-control'
+              id='assunto'
+              name='assunto'
+              placeholder='Assunto'
+              required=''
+            />
+
+            <div class='invalid-feedback'>
+              Informe o assunto da solicitação
+            </div>
+          </div>
+          <div class='mb-3'>
+            <textarea
+              class='form-control'
+              id='descricao'
+              placeholder='Messagem'
+            ></textarea>
+          </div>
+
+          <input type="hidden" name="usuarioId" value="">
+          <div class='d-grid'>
+            <button type='button' class='btn btn-success btn-lg'>
+              <img src='/public/img/mic.svg' alt='mic' />
+              Enviar um Audio
+            </button>
+          </div>
+          <br>
+
+          <div class='modal-footer'>
+            <div class='btn-group'>
+              <button type='submit' class='btn btn-primary'>
+                Enviar Solicitação
+              </button>
+              <button
+                type='button'
+                class='btn btn-danger'
+                data-bs-dismiss='modal'
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

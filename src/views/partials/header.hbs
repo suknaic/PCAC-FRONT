@@ -1,0 +1,33 @@
+<nav class='navbar navbar-expand-lg bg-light sticky-top'>
+  <div class='container'>
+    <a class='navbar-brand ' href='#'>
+      <img
+        src='/public/img/avatar.png'
+        height='50px'
+        alt='logo protagonismo colaborativo'
+        class="rounded"
+      />
+      Felipe Suknaic
+    </a>
+    <h5></h5>
+
+
+    <div class='d-flex'>
+      <div class='btn-group' role='group' aria-label='Basic example'>
+        <button
+          type='button'
+          class='btn btn-primary'
+          data-bs-toggle='modal'
+          data-bs-target='#staticBackdrop'
+        >
+          Fazer Solicitação
+        </button>
+        <a href='/logout' class='btn btn-outline-danger' type='button'>
+          Sair
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{{> modal-solicitacao}}
