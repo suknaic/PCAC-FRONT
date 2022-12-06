@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 
-import { RegisterUserService } from '../services/RegisterUserService';
+import { RegisterUserService } from './RegisterUserService';
 
 class RegisterUserController {
   async create(request: Request, response: Response): Promise<void> {
@@ -19,8 +19,8 @@ class RegisterUserController {
     } = request.body;
     const avatar = request.file ? request.file.filename : 'null';
     const endereco = {
-      latitude,
-      longitude,
+      latitude: latitude === '' ? null : latitude,
+      longitude: longitude === '' ? null : longitude,
       rua,
       numero,
       cidade,
@@ -41,7 +41,7 @@ class RegisterUserController {
       request.session.user = {
         id: usuarioId,
       };
-      response.render('cadastro-entidade', { usuarioId });
+      response.redirect('cadastro/entidade');
     } catch (error) {
       response.render('cadastro-usuario', { error });
     }

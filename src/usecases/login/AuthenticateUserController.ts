@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { AuthenticateService } from 'services/AuthenticateService';
+
+import { AuthenticateService } from './AuthenticateService';
 
 class AuthenticateUserController {
   async create(request: Request, response: Response): Promise<void> {

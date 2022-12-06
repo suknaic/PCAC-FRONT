@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
-import { RegisterEntitiService } from 'services/RegisterEntitiService';
+
+import { RegisterEntitiService } from './RegisterEntitiService';
 
 class RegisterEntitiController {
   async create(request: Request, response: Response): Promise<void> {

@@ -1,7 +1,6 @@
 import { AppError } from '@error/AppError';
+import { prismaClient } from '@prisma';
 import { compare } from 'bcrypt';
-
-import { prismaClient } from '../prisma';
 
 interface IRequest {
   email: string;

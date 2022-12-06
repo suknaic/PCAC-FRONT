@@ -1,16 +1,13 @@
 import { AppError } from '@error/AppError';
-import { hash } from 'bcrypt';
-import { cpf as UserCpf } from 'cpf-cnpj-validator';
-
-import { prismaClient } from '../prisma';
+import { prismaClient } from '@prisma';
 
 interface IRequest {
-  image?: string;
+  usuarioId: string;
+  image: string;
   nome: string;
-  cpf: string;
-  email: string;
+  tipo: string;
   telefone?: string;
-  senha: string;
+  detalhe?: string;
   endereco: {
     latitude: string;
     longitude: string;
@@ -21,40 +18,32 @@ interface IRequest {
   };
 }
 
-class RegisterUserService {
+class RegisterEntitiService {
   async execute({
+    usuarioId,
     image,
     nome,
-    cpf,
-    email,
+    tipo,
+    detalhe,
     telefone,
-    senha,
     endereco,
-  }: IRequest): Promise<string> {
-    const emailExists = await prismaClient.usuario.findFirst({
-      where: { email },
+  }: IRequest): Promise<void> {
+    const usuarioExist = await prismaClient.usuario.findFirst({
+      where: { id: usuarioId },
     });
-    if (emailExists) {
-      throw new AppError('email ja existe');
-    }
 
-    if (!UserCpf.isValid(cpf)) {
-      throw new AppError('CPF invalido!');
-    }
-
-    const password = await hash(senha, 8);
+    if (!usuarioExist) throw new AppError('Usuario nao existe');
 
     const { latitude, longitude, rua, numero, cidade, uf } = endereco;
-
     try {
-      const usuario = await prismaClient.usuario.create({
+      await prismaClient.entidade.create({
         data: {
+          usuarioId,
           image,
           nome,
-          cpf,
-          email,
+          tipo,
+          detalhe,
           telefone,
-          senha: password,
           endereco: {
             create: {
               latitude,
@@ -67,12 +56,10 @@ class RegisterUserService {
           },
         },
       });
-
-      return usuario.id;
     } catch (error) {
       throw new AppError(error.message);
     }
   }
 }
 
-export { RegisterUserService };
+export { RegisterEntitiService };

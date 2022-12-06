@@ -1,13 +1,12 @@
 import { AppError } from '@error/AppError';
+import { prismaClient } from '@prisma';
 import { Solicitacao } from '@prisma/client';
 
-import { prismaClient } from '../prisma';
-
 class UserGetSolicitationIdService {
-  async execute(id: string): Promise<Solicitacao> {
+  async execute(solicitacaoId: string): Promise<Solicitacao> {
     try {
       const solicitacao = await prismaClient.solicitacao.findFirst({
-        where: { id },
+        where: { id: solicitacaoId },
         include: {
           mensagens: true,
         },
