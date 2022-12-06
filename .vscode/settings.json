@@ -11,6 +11,7 @@
     "descricao",
     "solicitacao",
     "solicitacoes",
-    "middlewares"
+    "middlewares",
+    "usecases"
   ],
 }

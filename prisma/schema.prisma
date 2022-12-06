@@ -62,8 +62,7 @@ model Solicitacao {
   tipo       String
   assunto    String
   descricao  String?
-  status     String
-  finalizada Boolean    @default(false)
+  respondida Boolean    @default(false)
   Usuario    Usuario    @relation(fields: [usuarioId], references: [id])
   usuarioId  String
   mensagens  Mensagem[]
