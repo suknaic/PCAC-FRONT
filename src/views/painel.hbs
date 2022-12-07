@@ -88,7 +88,6 @@
       if(err.name == 'NotAllowedError') {
         $('.error-audio').append('<p class="text-danger">Você deve permitir o uso do Microfone ')
         navigator.permissions.query({ name: 'microphone' }).then((permissionStatus) => {
-              console.log(`microfone permission status is ${permissionStatus.state}`);
               permissionStatus.onchange = () => {
                 document.location.reload();
               };
