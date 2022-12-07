@@ -12,6 +12,9 @@
       "@error/*": [
         "error/*"
       ],
+      "@prisma": [
+        "prisma/index.ts"
+      ]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
