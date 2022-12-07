@@ -16,7 +16,7 @@ class PainelUserController {
 
     const solicitacoes = await getLastedSolicitation.execute(id);
     console.log(solicitacoes);
-
+    console.log(usuario);
     response.render('painel', { usuario, solicitacoes });
   }
 }
