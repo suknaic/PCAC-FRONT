@@ -16,38 +16,16 @@
 </div>
 
 {{> footer}}
-<script src="/public/js/validaformulario.js"></script>
-
-
-<script type='text/javascript'>
-  jQuery(function($){
-  const formModal = document.getElementById('.form-solicitacao');
-                $('.form-solicitacao').submit(function(event){
-
-                    if (!formModal.checkValidity()) {
-                      event.preventDefault();
-                      event.stopPropagation();
-                    }
-                    $.post('/painel/solicitacao', $('.form-solicitacao input').serialize(), function(retorno){
-                        alert(retorno)
-                    });
-
-                    return false;
-                });
-            });
-</script>
-
-
-
 <script type='text/javascript'>
   (() => {
     function getaudio(){
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(
+     navigator.mediaDevices.getUserMedia({ audio: true }).then(
     (stream) => {
 
         mediaRecorder = new MediaRecorder(stream);
         let chunks = [];
         mediaRecorder.ondataavailable = data => {
+            chunks.pop();
             chunks.push(data.data)
         }
         mediaRecorder.onstop = () => {
@@ -55,12 +33,20 @@
           const reader = new FileReader()
           reader.readAsDataURL(blob)
           reader.onloadend = async () => {
+            $('#audio-play audio').remove();
+            $('input[name="audio"]').remove();
             const audio = document.createElement('audio')
             audio.src = await reader.result
             audio.controls = true
             audio.controlsList="nodownload noplaybackrate"
             audio.classList.add("audio");
-            $('#audio-play').append(audio)
+            $('<input>').attr({
+                type: 'hidden',
+                id: 'audio',
+                name: 'audio'
+            }).val(reader.result)
+            .appendTo('#form-solicitacao');
+            $('#audio-play').append(audio);
           }
         }
 
@@ -95,9 +81,6 @@
       } else {
       $('.audio').remove();
       }
-
-
-
     });
     }
     getaudio();
@@ -105,3 +88,60 @@
 
 
 </script>
+
+<script type='text/javascript'>
+  const form = document.getElementById('form-solicitacao');
+  jQuery(function($){
+    $('#submit').click(function(event){
+
+       if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+            var formData = {
+            tipo: $('select[name="tipo"]').val(),
+            assunto: $('input[name="assunto"]').val(),
+            descricao: $('#descricao').val(),
+            audio: $('input[name="audio"]').val(),
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "/painel/solicitacao",
+            data: formData,
+            dataType: "json",
+            encode: true,
+          }).done(function (data) {
+            form.classList.remove('was-validated');
+
+            $('#audio-play audio').remove();
+            $('select[name="tipo"]').val('');
+            $('input[name="assunto"]').val('');
+            $('#descricao').val('');
+            $('input[name="audio"]').remove();
+            location.reload();
+          });
+        }
+        form.classList.add('was-validated');
+        event.preventDefault();
+    });
+  });
+
+  jQuery(function($){
+    var myModalEl = document.getElementById('staticBackdrop');
+    $('.closeModal').click(()=> {
+    var modal = bootstrap.Modal.getInstance(myModalEl)
+      modal.hide();
+    })
+    myModalEl.addEventListener('hidden.bs.modal', event => {
+     form.classList.remove('was-validated');
+     $(this).find('form').trigger('reset');
+     $('#audio-play audio').remove();
+    })
+
+
+  })
+</script>
+
+
+

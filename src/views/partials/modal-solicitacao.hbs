@@ -17,15 +17,13 @@
       </div>
       <div class='modal-body'>
         <form
-          action='/painel/solicitacao'
-          method='POST'
           class='needs-validation'
           novalidate=''
-          class='form-solicitacao'
+          id='form-solicitacao'
           {{! enctype='multipart/form-data' }}
         >
           <div class='mb-3'>
-            <select class='form-select' name='tipo' required=''>
+            <select class='form-select' name='tipo' id='tipo' required=''>
               <option value='' selected>
                 TIPO DE SOLICITAÇÃO...
               </option>
@@ -42,6 +40,7 @@
               type='text'
               class='form-control'
               name='assunto'
+              id='assunto'
               placeholder='Assunto'
               required=''
             />
@@ -54,10 +53,12 @@
             <textarea
               class='form-control'
               name='descricao'
+              id='descricao'
               placeholder='Messagem'
               required=''
             ></textarea>
           </div>
+
           <div id="audio-play" class="d-grid gap-2 mb-5"></div>
           <div class='d-grid'>
             <div class='error-audio'></div>
@@ -70,13 +71,12 @@
 
           <div class='modal-footer'>
             <div class='btn-group'>
-              <button type='submit' class='btn btn-primary'>
+              <button type='button' id="submit" class='btn btn-primary'>
                 Enviar Solicitação
               </button>
               <button
                 type='button'
-                class='btn btn-danger'
-                data-bs-dismiss='modal'
+                class='btn btn-danger closeModal'
               >
                 Cancelar
               </button>
