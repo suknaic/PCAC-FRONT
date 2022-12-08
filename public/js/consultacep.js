@@ -19,13 +19,13 @@ function getEndereco() {
         if (resultadoCEP.resultado) {
           // troca o valor dos elementos
           $('#rua').val(
-            `${decodeURI(resultadoCEP.tipo_logradouro)} ${decodeURI(
+            `${unescape(resultadoCEP.tipo_logradouro)} ${unescape(
               resultadoCEP.logradouro
             )}`
           );
           $('#bairro').val(unescape(resultadoCEP.bairro));
-          $('#cidade').val(decodeURI(resultadoCEP.cidade));
-          $('#estado').val(decodeURI(resultadoCEP.uf));
+          $('#cidade').val(unescape(resultadoCEP.cidade));
+          $('#estado').val(unescape(resultadoCEP.uf));
           // $("#enderecoCompleto").show("slow");
           $('#numero').focus();
         } else {
@@ -38,4 +38,5 @@ function getEndereco() {
     form.checkValidity();
   }
 }
+
 $('#cep').blur(getEndereco);
