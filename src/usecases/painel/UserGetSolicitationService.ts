@@ -7,7 +7,6 @@ class UserGetSolicitationService {
     try {
       const solicitacoes = await prismaClient.solicitacao.findMany({
         where: { usuarioId },
-        take: 5,
         orderBy: {
           createAt: 'desc',
         },

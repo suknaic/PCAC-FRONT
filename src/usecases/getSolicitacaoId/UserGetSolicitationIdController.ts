@@ -8,6 +8,7 @@ class UserGetSolicitationIdController {
     const userGetSolicitationService = new UserGetSolicitationIdService();
 
     const solicitacao = await userGetSolicitationService.execute(id);
+    response.render('chat', { solicitacao });
   }
 }
 

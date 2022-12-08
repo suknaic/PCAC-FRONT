@@ -6,6 +6,7 @@ interface IRequest {
   tipo: string;
   assunto: string;
   descricao: string;
+  audio: string;
 }
 
 class RegisterSolicitationService {
@@ -14,6 +15,7 @@ class RegisterSolicitationService {
     tipo,
     assunto,
     descricao,
+    audio,
   }: IRequest): Promise<void> {
     try {
       await prismaClient.solicitacao.create({
@@ -22,6 +24,7 @@ class RegisterSolicitationService {
           assunto,
           tipo,
           descricao,
+          audio,
         },
       });
     } catch (error) {

@@ -5,10 +5,7 @@ import { RegisterSolicitationService } from './RegisterSolicitationService';
 class RegisterSolicitationController {
   async create(request: Request, response: Response): Promise<void> {
     const { id } = request.session.user;
-    const { tipo, assunto, descricao } = request.body;
-
-    console.log(request.body);
-
+    const { tipo, assunto, descricao, audio } = request.body;
     const solicitationService = new RegisterSolicitationService();
 
     try {
@@ -17,10 +14,11 @@ class RegisterSolicitationController {
         tipo,
         assunto,
         descricao,
+        audio,
       });
-      response.redirect('/painel');
+      response.json({ message: 'success' }).status(200);
     } catch (error) {
-      response.render('/painel', { error });
+      response.json({ error: error.message }).status(400);
     }
   }
 }

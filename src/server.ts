@@ -14,7 +14,7 @@ app.use(
   session({
     secret: process.env.SECRET_TOKEN,
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     // alterar para true quando finalizar o desenvolvimento
   })
 );
