@@ -1,0 +1,3 @@
+class ChatController {}
+
+export { ChatController };

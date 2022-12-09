@@ -20,7 +20,9 @@
           class='needs-validation'
           novalidate=''
           id='form-solicitacao'
-          {{! enctype='multipart/form-data' }}
+          enctype='multipart/form-data'
+          method="POST"
+          action="/painel/solicitacao"
         >
           <div class='mb-3'>
             <select class='form-select' name='tipo' id='tipo' required=''>
@@ -58,10 +60,15 @@
               required=''
             ></textarea>
           </div>
-
-          <div id="audio-play" class="d-grid gap-2 mb-5"></div>
+          {{!-- <div class="">
+            <label for="arquivo" class="form-label text-primary fw-semibold">* Anexe uma imagem ou PDF <small class="text-muted">(opcional)</small></label>
+            <input class="form-control" type="file" name="arquivo" id="arquivo">
+          </div>
+          <hr class='my-4' /> --}}
+          <div id="audio-play" class="d-grid gap-2 mb-3"></div>
           <div class='d-grid'>
             <div class='error-audio'></div>
+             <label class="form-label text-danger"><small class="text-muted"> (opcional)</small> <br> *Mantenha o botao prescionado para iniciar a gravação.</label>
             <button type='button' class='btn btn-success btn-lg audio'>
               <img src='/public/img/mic.svg' alt='mic' />
               Enviar um Audio
@@ -71,7 +78,7 @@
 
           <div class='modal-footer'>
             <div class='btn-group'>
-              <button type='button' id="submit" class='btn btn-primary'>
+              <button type='button' id="btnSubmit" class='btn btn-primary'>
                 Enviar Solicitação
               </button>
               <button

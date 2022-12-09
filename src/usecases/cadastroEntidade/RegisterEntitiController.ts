@@ -5,7 +5,6 @@ import { RegisterEntitiService } from './RegisterEntitiService';
 class RegisterEntitiController {
   async create(request: Request, response: Response): Promise<void> {
     const {
-      usuarioId,
       nome,
       tipo,
       detalhe,
@@ -17,6 +16,8 @@ class RegisterEntitiController {
       cidade,
       uf,
     } = request.body;
+
+    const { id } = request.session.user;
 
     const image = request.file ? request.file.filename : 'null';
     const registerEntitiService = new RegisterEntitiService();
@@ -32,7 +33,7 @@ class RegisterEntitiController {
     try {
       await registerEntitiService.execute({
         image,
-        usuarioId,
+        usuarioId: id,
         nome,
         tipo,
         detalhe,

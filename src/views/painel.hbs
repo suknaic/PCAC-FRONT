@@ -14,7 +14,7 @@
     </div>
   {{/if}}
 </div>
-
+{{> modal-solicitacao}}
 {{> footer}}
 <script type='text/javascript'>
   (() => {
@@ -92,7 +92,7 @@
 <script type='text/javascript'>
   const form = document.getElementById('form-solicitacao');
   jQuery(function($){
-    $('#submit').click(function(event){
+    $('#btnSubmit').click(function(event){
 
        if (!form.checkValidity()) {
           event.preventDefault();
@@ -104,6 +104,7 @@
             descricao: $('#descricao').val(),
             audio: $('input[name="audio"]').val(),
           };
+            {{!-- arquivo: $('input[name="arquivo"]').prop('files')[0], --}}
 
           $.ajax({
             type: "POST",
@@ -118,6 +119,7 @@
             $('select[name="tipo"]').val('');
             $('input[name="assunto"]').val('');
             $('#descricao').val('');
+            $('input[name="arquivo"]').val('');
             $('input[name="audio"]').remove();
             location.reload();
           });
@@ -142,6 +144,7 @@
 
   })
 </script>
+
 
 
 

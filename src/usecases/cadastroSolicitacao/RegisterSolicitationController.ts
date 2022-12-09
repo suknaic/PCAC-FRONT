@@ -6,7 +6,10 @@ class RegisterSolicitationController {
   async create(request: Request, response: Response): Promise<void> {
     const { id } = request.session.user;
     const { tipo, assunto, descricao, audio } = request.body;
+    const arquivo = request.body.arquivo ? request.body.file : 'null';
     const solicitationService = new RegisterSolicitationService();
+
+    console.log(request.body);
 
     try {
       await solicitationService.execute({
@@ -14,11 +17,12 @@ class RegisterSolicitationController {
         tipo,
         assunto,
         descricao,
+        arquivo,
         audio,
       });
       response.json({ message: 'success' }).status(200);
     } catch (error) {
-      response.json({ error: error.message }).status(400);
+      console.log(error);
     }
   }
 }

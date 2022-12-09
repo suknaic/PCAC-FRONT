@@ -1,12 +1,13 @@
 <nav class='navbar navbar-expand-lg bg-light sticky-top'>
   <div class='container'>
     <a class='navbar-brand titulo d-flex align-items-center' href='#'>
-      <img
-        src='/avatar/{{usuario.image}}'
-        height='50px'
-        alt='logo protagonismo colaborativo'
-        class="avatar"
-        />
+        {{#if usuario.image}}
+          <img
+          src='/avatar/{{usuario.image}}'
+          height='50px'
+          class="avatar"
+          />
+        {{/if}}
         <p class="info pt-1 mb-0">
           {{usuario.nome}} <br>
           {{#usuario.Entidade}}

@@ -79,7 +79,7 @@ body {
 }
 .btn-file__actions__item:hover,
 .btn-file__actions__item:focus {
-  color: #636b6f;
+  color: #0a4dc2;
   background-color: rgba(211, 224, 233, 0.1);
 }
 .btn-file__actions__item:hover--shadow,

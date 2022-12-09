@@ -18,6 +18,7 @@
         <div class='col svg'>
           <img src="/public/img/protagonismo.svg" alt="">
         </div>
+         <hr class='my-4' />
       </div>
       <form
         action='/cadastro/entidade'
@@ -79,14 +80,14 @@
 
           <div class='col-12'>
             <label for='cnpj' class='form-label'>
-              CNPJ
+              CNPJ <small class=
+              "text-muted">(opcional)</small>
             </label>
             <input
               type='text'
               class='form-control'
               id='cnpj'
               name='cnpj'
-              required=''
             />
             <div class='invalid-feedback'>
               Informe um cnpj válido
@@ -98,11 +99,26 @@
               Selecione o Tipo
             </label>
             <select class='form-select' id='tipo' name='tipo' required=''>
-              <option value=''>
-                Selecione...
+              <option value='' selected>
+                Selecione
               </option>
-              <option selected>
-                MEI
+              <option value='associacao' >
+                Associação
+              </option>
+              <option value='religiosa' >
+                Religiosa
+              </option>
+              <option value='movimento' >
+                Movimento
+              </option>
+              <option value='sindicato' >
+                Sindicato
+              </option>
+              <option value='ong' >
+                Ong
+              </option>
+              <option value='outros' >
+                Outros
               </option>
             </select>
             <div class='invalid-feedback'>
@@ -306,6 +322,5 @@ S
 </script>
 <script src='/public/js/validaformulario.js'></script>
 <script src='/public/js/mask.js'></script>
-<script src='/public/js/imagepreview.js'></script>
 <script src='/public/js/consultacep.js'></script>
 <script src='/public/js/getcidade.js'></script>

@@ -10,7 +10,11 @@ const entidadeImage = Multer(uploadConfig.upload('entidadeImage'));
 const registerEntitiRouter = Router();
 const registerEntitiController = new RegisterEntitiController();
 
-registerEntitiRouter.get('/cadastro/entidade', registerEntitiController.index);
+registerEntitiRouter.get(
+  '/cadastro/entidade',
+  ensureAuthenticated,
+  registerEntitiController.index
+);
 registerEntitiRouter.post(
   '/cadastro/entidade',
   ensureAuthenticated,

@@ -63,6 +63,7 @@ model Solicitacao {
   assunto    String
   descricao  String?
   audio      String[]
+  arquivo    String[]
   respondida Boolean    @default(false)
   Usuario    Usuario    @relation(fields: [usuarioId], references: [id])
   usuarioId  String
@@ -73,8 +74,9 @@ model Solicitacao {
 
 model Mensagem {
   id            String       @id @default(uuid())
-  descricao     String?
+  texto         String?
   audio         String[]
+  arquivo       String[]
   Solicitacao   Solicitacao? @relation(fields: [solicitacaoId], references: [id])
   solicitacaoId String
   usuario       Usuario      @relation(fields: [usuarioId], references: [id])
