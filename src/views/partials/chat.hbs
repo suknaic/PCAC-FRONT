@@ -1,45 +1,41 @@
 <div class='row clearfix'>
   <div class='col-lg-12'>
     <div class='card chat-app'>
-
       <div class='chat'>
         <div class='chat-header'>
-          <div class='row justify-content-start'>
-            <div class='col-lg-6'>
-              <a
-                href='javascript:void(0);'
-              >
-                <img
-                  src='https://bootdey.com/img/Content/avatar/avatar2.png'
-                  alt='avatar'
-                />
-              </a>
-              <div class='chat-about'>
-                <h6 class='m-b-0'>
-                  Felipe Suknaic <br>
-                   <small class="text-muted">
-                  Development
-                </small>
-                </h6>
-
+          <div class='row justify-content-end'>
+            {{#if usuario}}
+              <div class='col-12'>
+                <a href='javascript:void(0);'>
+                  <img src='/avatar/{{usuario.image}}' alt='avatar' />
+                </a>
+                <div class='chat-about'>
+                  <h6 class='m-b-0'>
+                    {{usuario.nome}}
+                    <br />
+                    {{#usuario.Entidade}}
+                      <small class='text-muted'>
+                        {{nome}}
+                      </small>
+                    {{/usuario.Entidade}}
+                  </h6>
+                </div>
               </div>
-            </div>
 
+
+            {{/if}}
           </div>
         </div>
         <div class='chat-history'>
           <ul class='m-b-0'>
-
-           <li class='clearfix'>
-
+            <li class='clearfix'>
               <div class='message other-message float-right'>
-
-                Hi Aiden, how are you? How is the project coming along?
+                Oi Teles, como você está? Bora entrega esse projeto hoje
                 <img
-                  src='https://bootdey.com/img/Content/avatar/avatar2.png'
+                  src='/avatar/{{usuario.image}}'
                   alt='avatar'
-                  class="avatar"
-                    height="50px"
+                  class='avatar'
+                  height='50px'
                 />
               </div>
             </li>
@@ -51,9 +47,62 @@
                 </span>
               </div>
               <div class='message my-message'>
-                Are we meeting today?
+                <img
+                  src='https://bootdey.com/img/Content/avatar/avatar2.png'
+                  alt='avatar'
+                  class='avatar'
+                  height='50px'
+                />
+
+                Bora Reunir hoje pra finalizar ?
               </div>
             </li>
+
+            <li class='clearfix'>
+              <div class='message other-message float-right'>
+                O projeto ta quase concluído e tenho resultados para mostrar a vocês.
+                <img
+                  src='/avatar/{{usuario.image}}'
+                  alt='avatar'
+                  class='avatar'
+                  height='50px'
+                />
+              </div>
+            </li>
+            <li class='clearfix'>
+              <div class='message other-message float-right'>
+                O projeto ta quase concluído e tenho resultados para mostrar a vocês.
+                <img
+                  src='/avatar/{{usuario.image}}'
+                  alt='avatar'
+                  class='avatar'
+                  height='50px'
+                />
+              </div>
+            </li>
+            <li class='clearfix'>
+              <div class='message other-message float-right'>
+                O projeto ta quase concluído e tenho resultados para mostrar a vocês.
+                <img
+                  src='/avatar/{{usuario.image}}'
+                  alt='avatar'
+                  class='avatar'
+                  height='50px'
+                />
+              </div>
+            </li>
+            <li class='clearfix'>
+              <div class='message other-message float-right'>
+                O projeto ta quase concluído e tenho resultados para mostrar a vocês.
+                <img
+                  src='/avatar/{{usuario.image}}'
+                  alt='avatar'
+                  class='avatar'
+                  height='50px'
+                />
+              </div>
+            </li>
+
             <li class='clearfix'>
               <div class='message-data'>
                 <span class='message-data-time'>
@@ -61,20 +110,14 @@
                 </span>
               </div>
               <div class='message my-message'>
-                Project has been already finished and I have results to show you.
-              </div>
-            </li>
-             <li class='clearfix'>
-
-              <div class='message other-message float-right'>
-
-                Hi Aiden, how are you? How is the project coming along?
                 <img
                   src='https://bootdey.com/img/Content/avatar/avatar2.png'
                   alt='avatar'
-                  class="avatar"
-                    height="50px"
+                  class='avatar'
+                  height='50px'
                 />
+
+                Project has been already finished and I have results to show you.
               </div>
             </li>
           </ul>
@@ -82,11 +125,22 @@
         <div class='chat-message clearfix'>
           <div class='input-group mb-0'>
             <div class='input-group-prepend'>
-
             </div>
-            <input type="text" class="form-control" placeholder="Mensagem ... " aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-primary" type="button" id="button-addon2">
-  <i class='fa fa-send'></i> Enviar</button>
+            <input
+              type='text'
+              class='form-control'
+              placeholder='Mensagem ... '
+              aria-label="Recipient's username"
+              aria-describedby='button-addon2'
+            />
+            <button class='btn btn-primary' type='button' id='button-addon2'>
+              <i class='fa fa-send'></i>
+              Enviar
+            </button>
+            <button class='btn btn-success' type='button' id='button-addon2'>
+              <i class='fa fa-microphone'></i>
+              Audio
+            </button>
           </div>
         </div>
       </div>
