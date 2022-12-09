@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 
+import { app } from '../../app';
 import { GetFullUserService } from './GetFullUserService';
 import { UserGetSolicitationService } from './UserGetSolicitationService';
 
@@ -13,9 +14,9 @@ class PainelUserController {
     const usuario = await getfulluser.execute(id);
     delete usuario.senha;
     delete usuario.id;
-
     const solicitacoes = await getLastedSolicitation.execute(id);
-    response.render('painel', { usuario, solicitacoes });
+    app.locals.usuario = usuario;
+    response.render('painel', { solicitacoes });
   }
 }
 
