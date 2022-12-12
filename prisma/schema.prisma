@@ -61,9 +61,6 @@ model Solicitacao {
   id         String     @id @default(uuid())
   tipo       String
   assunto    String
-  descricao  String?
-  audio      String[]
-  arquivo    String[]
   respondida Boolean    @default(false)
   Usuario    Usuario    @relation(fields: [usuarioId], references: [id])
   usuarioId  String

@@ -5,7 +5,7 @@ interface IRequest {
   usuarioId: string;
   tipo: string;
   assunto: string;
-  descricao: string;
+  texto: string;
   arquivo: string;
   audio: string;
 }
@@ -15,7 +15,7 @@ class RegisterSolicitationService {
     usuarioId,
     tipo,
     assunto,
-    descricao,
+    texto,
     arquivo,
     audio,
   }: IRequest): Promise<void> {
@@ -23,11 +23,16 @@ class RegisterSolicitationService {
       await prismaClient.solicitacao.create({
         data: {
           usuarioId,
-          assunto,
           tipo,
-          descricao,
-          arquivo,
-          audio,
+          assunto,
+          mensagens: {
+            create: {
+              usuarioId,
+              texto,
+              arquivo,
+              audio,
+            },
+          },
         },
       });
     } catch (error) {

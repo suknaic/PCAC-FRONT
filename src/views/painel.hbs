@@ -101,7 +101,7 @@
             var formData = {
             tipo: $('select[name="tipo"]').val(),
             assunto: $('input[name="assunto"]').val(),
-            descricao: $('#descricao').val(),
+            texto: $('#texto').val(),
             audio: $('input[name="audio"]').val(),
           };
             {{!-- arquivo: $('input[name="arquivo"]').prop('files')[0], --}}
@@ -118,7 +118,7 @@
             $('#audio-play audio').remove();
             $('select[name="tipo"]').val('');
             $('input[name="assunto"]').val('');
-            $('#descricao').val('');
+            $('#texto').val('');
             $('input[name="arquivo"]').val('');
             $('input[name="audio"]').remove();
             location.reload();

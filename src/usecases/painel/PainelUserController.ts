@@ -15,8 +15,7 @@ class PainelUserController {
     delete usuario.senha;
     delete usuario.id;
     const solicitacoes = await getLastedSolicitation.execute(id);
-    app.locals.usuario = usuario;
-    response.render('painel', { solicitacoes });
+    response.render('painel', { usuario, solicitacoes });
   }
 }
 

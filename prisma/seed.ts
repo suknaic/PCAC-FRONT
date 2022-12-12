@@ -13,6 +13,13 @@ async function main() {
       cpf: '12345678911',
       telefone: '68981006523',
       senha: await hash('usuario', 8),
+      Entidade: {
+        create: {
+          nome: 'escola perto de casa',
+          tipo: 'escola',
+          detalhe: 'perto de casa toda verde',
+        },
+      },
     },
   });
 
@@ -29,16 +36,7 @@ async function main() {
     },
   });
 
-  const entidade = await prisma.entidade.create({
-    data: {
-      nome: 'escola perto de casa',
-      tipo: 'escola',
-      detalhe: 'perto de casa toda verde',
-      usuarioId: usuario.id,
-    },
-  });
-
-  console.log({ admin, usuario, entidade });
+  console.log({ admin, usuario });
 }
 main()
   .then(async () => {

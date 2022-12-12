@@ -10,6 +10,9 @@ class UserGetSolicitationService {
         orderBy: {
           createAt: 'desc',
         },
+        include: {
+          mensagens: true,
+        },
       });
       return solicitacoes;
     } catch (error) {

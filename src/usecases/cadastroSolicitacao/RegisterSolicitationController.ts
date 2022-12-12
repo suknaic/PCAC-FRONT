@@ -5,7 +5,7 @@ import { RegisterSolicitationService } from './RegisterSolicitationService';
 class RegisterSolicitationController {
   async create(request: Request, response: Response): Promise<void> {
     const { id } = request.session.user;
-    const { tipo, assunto, descricao, audio } = request.body;
+    const { tipo, assunto, texto, audio } = request.body;
     const arquivo = request.body.arquivo ? request.body.file : 'null';
     const solicitationService = new RegisterSolicitationService();
 
@@ -16,7 +16,7 @@ class RegisterSolicitationController {
         usuarioId: id,
         tipo,
         assunto,
-        descricao,
+        texto,
         arquivo,
         audio,
       });
