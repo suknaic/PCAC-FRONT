@@ -9,8 +9,6 @@ interface IRequest {
   telefone?: string;
   detalhe?: string;
   endereco: {
-    latitude: string;
-    longitude: string;
     rua: string;
     numero: string;
     cidade: string;
@@ -34,7 +32,7 @@ class RegisterEntitiService {
 
     if (!usuarioExist) throw new AppError('Usuario nao existe');
 
-    const { latitude, longitude, rua, numero, cidade, uf } = endereco;
+    const { rua, numero, cidade, uf } = endereco;
     try {
       await prismaClient.entidade.create({
         data: {
@@ -46,8 +44,6 @@ class RegisterEntitiService {
           telefone,
           endereco: {
             create: {
-              latitude,
-              longitude,
               rua,
               numero,
               cidade,

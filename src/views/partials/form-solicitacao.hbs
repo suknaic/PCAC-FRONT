@@ -1,0 +1,164 @@
+<form
+  action='/painel/solicitacao'
+  method='POST'
+  enctype='multipart/form-data'
+  class='needs-validation'
+  novalidate=''
+>
+  <div class='mb-3'>
+    <select class='form-select' name='tipo' id='tipo' required=''>
+      <option value='' selected>
+        Selecione o tipo da Solicitação
+      </option>
+      <option value='demanda'>
+        Demanda
+      </option>
+      <option value='informacao'>
+        informação
+      </option>
+      <option value='denuncia'>
+        Denúncia
+      </option>
+      <option value='sugestao'>
+        Sugestão
+      </option>
+      <option value='outros'>
+        Outros
+      </option>
+    </select>
+    <div class='invalid-feedback'>
+      Selecione o tipo
+    </div>
+  </div>
+  <div class='mb-3 input-group-lg'>
+    <input
+      type='text'
+      class='form-control'
+      name='assunto'
+      id='assunto'
+      placeholder='Assunto'
+      required=''
+    />
+
+    <div class='invalid-feedback'>
+      Informe o assunto da solicitação
+    </div>
+  </div>
+  <div class='mb-3'>
+    <textarea
+      class='form-control'
+      name='texto'
+      id='descricao'
+      placeholder='Messagem'
+      style="height: 200px"
+      required=''
+    ></textarea>
+  </div>
+  <div class=''>
+    <label for='arquivo' class='form-label text-primary fw-semibold'>
+      * Anexe imagem(s) ou arquivos PDF
+      <small class='text-muted'>
+        (opcional)
+      </small>
+    </label>
+    <input
+      class='form-control'
+      type='file'
+      name='arquivos'
+      id='arquivo'
+      multiple
+    />
+  </div>
+  <div class='d-grid mt-3'>
+  <div id='audio-play' class='d-grid gap-2 mb-3'></div>
+    <div class='error-audio'></div>
+    <label class='form-label text-danger'>
+      <small class='text-muted'>
+        (opcional)
+      </small>
+
+      <br />
+      *Mantenha o botao prescionado para iniciar a gravação.
+    </label>
+    <button type='button' class='btn btn-success btn-lg audio'>
+      <img src='/public/img/mic.svg' alt='mic' />
+      Enviar um Audio
+    </button>
+  </div>
+  <br />
+
+  <button type='submit'class='btn btn-primary'>
+        Enviar Solicitação
+      </button>
+</form>
+
+<script type='text/javascript'>
+  (() => {
+    function getaudio(){
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(
+      (stream) => {
+
+          mediaRecorder = new MediaRecorder(stream);
+          let chunks = [];
+          mediaRecorder.ondataavailable = data => {
+              chunks.pop();
+              chunks.push(data.data)
+          }
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(chunks, { type: 'audio/webm; codecs=opus' })
+            const reader = new FileReader()
+            reader.readAsDataURL(blob)
+            reader.onloadend = async () => {
+              $('#audio-play audio').remove();
+              $('input[name="audio"]').remove();
+              const audio = document.createElement('audio')
+              audio.src = await reader.result
+              audio.controls = true
+              audio.controlsList="nodownload noplaybackrate"
+              audio.classList.add("audio");
+              $('<input>').attr({
+                  type: 'hidden',
+                  id: 'audio',
+                  name: 'audio'
+              }).val(reader.result)
+              .appendTo('#form-solicitacao');
+              $('#audio-play').append(audio);
+            }
+          }
+
+      $(function(){
+        $(".audio").bind('mousedown touchstart' ,function(event){
+          $(".audio").addClass("btn-danger")
+          .removeClass("btn-success")
+          .html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Gravando...");
+          mediaRecorder.start();
+        });
+
+      });
+
+      $(function(){
+        $(".audio").bind('mouseup touchend', function(){
+          $(".audio").addClass("btn-success").removeClass('btn-danger')
+          .html("<img src='/public/img/mic.svg' alt='mic' />Enviar um Audio");
+          mediaRecorder.stop();
+        });
+      });
+
+
+      },
+      (err) => {
+        if(err.name == 'NotAllowedError') {
+          $('.error-audio').append('<p class="text-danger">Você deve permitir o uso do Microfone ')
+          navigator.permissions.query({ name: 'microphone' }).then((permissionStatus) => {
+                permissionStatus.onchange = () => {
+                  document.location.reload();
+                };
+              });
+        } else {
+        $('.audio').remove();
+        }
+      });
+      }
+      getaudio();
+  })();
+</script>

@@ -1,26 +1,8 @@
 <link rel="stylesheet" href="/public/css/upload-form.css">
 {{error.message}}
-<div
-  class='container text-bg-light p-5 mt-5 align-items-center cadusuario rounded-top'
->
-  <div class='row'>
-    <div class='col'>
-      <div class='row align-items-center text-center mb-4'>
-        <div class='col titulo'>
-          <h4 class='mb-3'>
-            CADASTRO DO LIDER
-          </h4>
-          <P>
-            Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos da sua Entidade.
-          </P>
-        </div>
-        <div class='col svg'>
-          <img src="/public/img/protagonismo.svg" alt="">
-        </div>
-      </div>
-       <hr class='my-4' />
+  {{#if usuario}}
       <form
-        action='/cadastro'
+        action='/painel/solicitacao'
         method='POST'
         class='needs-validation'
         enctype='multipart/form-data'
@@ -58,9 +40,7 @@
             </div>
           </div>
           <div class='col-12'>
-            <h4 class='pb-3 mt-3 titulo'>
-              Dados Pessoais
-            </h4>
+
             <label for='nomecompleto' class='form-label'>
               Nome Completo
             </label>
@@ -70,6 +50,7 @@
               id='nomecompleto'
               name='nome'
               placeholder=''
+              value='{{usuario.nome}}'
               required=''
             />
             <div class='invalid-feedback'>
@@ -86,6 +67,7 @@
               class='form-control'
               id='cpf'
               name='cpf'
+              value='{{usuario.cpf}}'
               required=''
             />
             <div class='invalid-feedback'>
@@ -101,6 +83,7 @@
               class='form-control'
               id='email'
               name='email'
+              value='{{usuario.email}}'
               placeholder='email@example.com'
               required=''
             />
@@ -118,6 +101,7 @@
               class='form-control'
               id='telefone'
               name='telefone'
+              value='{{usuario.telefone}}'
               placeholder='(68) 9999-9999'
               required=''
             />
@@ -130,12 +114,12 @@
               Senha
             </label>
             <input
-              type='password'
+              type='text'
               class='form-control'
               id='password'
               name='senha'
               placeholder='*****'
-              required=''
+
             />
             <div class='invalid-feedback'>
               Insira uma senha!
@@ -143,20 +127,18 @@
           </div>
 
           <hr class='my-4' />
+          {{#usuario.endereco}}
 
           <h5 class='titulo'>
-
+            Endereço
           </h5>
-          {{!-- <div class='col-12'>
-            <div id='map'>
-            </div>
-          </div> --}}
 
           <div class='col-3'>
             <label for='cep' class='form-label'>
               cep
             </label>
             <input
+              value='{{cep}}'
               type='text'
               class='form-control'
               id='cep'
@@ -174,11 +156,8 @@
               Cidade
             </label>
             <select class='form-select' id='cidade' name='cidade' required=''>
-              <option value=''>
-                Selecione...
-              </option>
-              <option selected>
-               Rio Branco
+              <option value='{{cidade}}' selected>
+                {{cidade}}
               </option>
             </select>
             <div class='invalid-feedback'>
@@ -191,12 +170,10 @@
               Estado
             </label>
             <select class='form-select' id='estado' name='uf' required=''>
-              <option value=''>
-                Selecione...
+              <option value='{{uf}}' selected>
+               {{uf}}
               </option>
-              <option selected>
-                AC
-              </option>
+
             </select>
             <div class='invalid-feedback'>
               Selecione o Estado!
@@ -214,6 +191,7 @@
               name='rua'
               placeholder='Nome da rua'
               required=''
+              value='{{rua}}'
             />
             <div class='invalid-feedback'>
               Informe o nome da rua.
@@ -231,6 +209,7 @@
               name='bairro'
               placeholder='Nome do bairro'
               required=''
+              value='{{bairro}}'
             />
             <div class='invalid-feedback'>
               Informe o nome do Bairro.
@@ -248,22 +227,19 @@
               name='numero'
               placeholder='1111'
               required=''
+              value='{{numero}}'
             />
             <div class='invalid-feedback'>
               Informe o número
             </div>
           </div>
 
-
-
-
         </div>
         {{!-- <input type='hidden' name='latitude' value='' />
         <input type='hidden' name='longitude' value='' /> --}}
 
-
+         {{/usuario.endereco}}
         <hr class='my-4' />
-
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
          <button class=' btn btn-primary' type='submit'>
           Proximo
@@ -271,55 +247,8 @@
         </button>
         </div>
       </form>
-    </div>
-  </div>
-</div>
+  {{/if}}
 
-{{> footer}}
-
-<link
-  rel='stylesheet'
-  href='https://unpkg.com/leaflet@1.9.3/dist/leaflet.css'
-  integrity='sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI='
-  crossorigin=''
-/>
-
-<script
-  src='https://unpkg.com/leaflet@1.9.3/dist/leaflet.js'
-  integrity='sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM='
-  crossorigin=''
-></script>
-
-{{!-- <script>
-  var map = L.map('map').setView([-9.9728777, -67.8159813], 13);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-  }).addTo(map);
-
-  const popup = L.marker();
-  const llt = [];
-
-  const inputLatitude  = document.getElementsByName("latitude")[0];
-  const inputLongitude  = document.getElementsByName("longitude")[0];
-
-  function onMapClick(e) {
-
-
-    popup
-      .setLatLng(e.latlng)
-      .addTo(map);
-
-    const {lat, lng} = e.latlng;
-
-    inputLatitude.value = lat;
-    inputLongitude.value = lng;
-
-
-  }
-
-  map.on('click', onMapClick);
-</script> --}}
 
 <script src="/public/js/validaformulario.js"></script>
 <script src="/public/js/mask.js"></script>

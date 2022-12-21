@@ -1,0 +1,87 @@
+
+.cadusuario
+{
+  max-width: 700px;
+}
+
+#map {
+  height: 350px;
+}
+
+
+.btn-file {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+.btn-file__actions {
+  margin: 0;
+  padding: 0;
+}
+.btn-file__actions__item {
+  padding: 35px;
+  font-size: 1.5em;
+  color: #04245B;
+  cursor: pointer;
+  text-decoration: none;
+  border-top: 3px dashed #04245B;
+  border-left: 3px dashed #04245B;
+  border-bottom: 3px dashed #04245B;
+}
+.btn-file__actions__item:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.btn-file__actions__item:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-right: 3px dashed #04245B;
+}
+.btn-file__actions__item:hover,
+.btn-file__actions__item:focus {
+  color: #0a4dc2;
+  background-color: rgba(211, 224, 233, 0.1);
+}
+.btn-file__actions__item:hover--shadow,
+.btn-file__actions__item:focus--shadow {
+  box-shadow: #d3e0e9 0 0 60px 15px;
+}
+.btn-file__actions__item--shadow {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.btn-file__actions__item--shadow::before {
+  content: " ";
+  box-shadow: #fff 0 0 60px 40px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+.btn-file__preview {
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+}
+.form-group label.attachment {
+  width: 100%;
+}
+.form-group label.attachment .btn-create > a,
+.form-group label.attachment .btn-create > div {
+  margin-top: 5px;
+}
+.form-group label.attachment input[type="file"] {
+  display: none;
+}
+

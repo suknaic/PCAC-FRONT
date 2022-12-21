@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/public/css/upload-form.css">
 {{error.message}}
 <div
   class='container text-bg-light p-5 mt-5 align-items-center cadusuario rounded-top'
@@ -153,12 +154,12 @@
           <hr class='my-4' />
 
           <h5 class='titulo'>
-            Marque a localização no Mapa
+             Endereço
           </h5>
-          <div class='col-12'>
+          {{!-- <div class='col-12'>
             <div id='map'>
             </div>
-          </div>
+          </div> --}}
 
           <div class='col-3'>
             <label for='cep' class='form-label'>
@@ -262,8 +263,8 @@
             </div>
           </div>
         </div>
-        <input type='hidden' name='latitude' value='' />
-        <input type='hidden' name='longitude' value='' />
+        {{!-- <input type='hidden' name='latitude' value='' />
+        <input type='hidden' name='longitude' value='' /> --}}
         <input type='hidden' name='usuarioId' value='{{usuarioId}}' />
 
         <hr class='my-4' />
@@ -278,7 +279,7 @@
 
 {{> footer}}
 
-<link
+{{!-- <link
   rel='stylesheet'
   href='https://unpkg.com/leaflet@1.9.3/dist/leaflet.css'
   integrity='sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI='
@@ -290,7 +291,6 @@
   integrity='sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM='
   crossorigin=''
 ></script>
-S
 <script>
   var map = L.map('map').setView([-9.9728777, -67.8159813], 13);
 
@@ -319,7 +319,7 @@ S
   }
 
   map.on('click', onMapClick);
-</script>
+</script> --}}
 <script src='/public/js/validaformulario.js'></script>
 <script src='/public/js/mask.js'></script>
 <script src='/public/js/consultacep.js'></script>

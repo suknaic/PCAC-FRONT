@@ -4,23 +4,10 @@ import { RegisterUserService } from './RegisterUserService';
 
 class RegisterUserController {
   async create(request: Request, response: Response): Promise<void> {
-    const {
-      nome,
-      cpf,
-      email,
-      telefone,
-      senha,
-      latitude,
-      longitude,
-      rua,
-      numero,
-      cidade,
-      uf,
-    } = request.body;
+    const { nome, cpf, email, telefone, senha, rua, numero, cidade, uf } =
+      request.body;
     const avatar = request.file ? request.file.filename : 'null';
     const endereco = {
-      latitude: latitude === '' ? null : latitude,
-      longitude: longitude === '' ? null : longitude,
       rua,
       numero,
       cidade,

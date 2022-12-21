@@ -29,8 +29,6 @@ model Usuario {
 
 model Endereco {
   id         String    @id @default(uuid())
-  latitude   Decimal?
-  longitude  Decimal?
   cep        String?
   bairro     String?
   rua        String
@@ -73,7 +71,7 @@ model Mensagem {
   id            String       @id @default(uuid())
   texto         String?
   audio         String[]
-  arquivo       String[]
+  arquivos      String[]
   Solicitacao   Solicitacao? @relation(fields: [solicitacaoId], references: [id])
   solicitacaoId String
   usuario       Usuario      @relation(fields: [usuarioId], references: [id])

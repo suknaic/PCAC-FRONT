@@ -11,8 +11,6 @@ interface IRequest {
   telefone?: string;
   senha: string;
   endereco: {
-    latitude: string;
-    longitude: string;
     rua: string;
     numero: string;
     cidade: string;
@@ -43,7 +41,7 @@ class RegisterUserService {
 
     const password = await hash(senha, 8);
 
-    const { latitude, longitude, rua, numero, cidade, uf } = endereco;
+    const { rua, numero, cidade, uf } = endereco;
 
     try {
       const usuario = await prismaClient.usuario.create({
@@ -56,8 +54,6 @@ class RegisterUserService {
           senha: password,
           endereco: {
             create: {
-              latitude,
-              longitude,
               rua,
               numero,
               cidade,

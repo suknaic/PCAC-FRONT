@@ -9,6 +9,7 @@ class GetFullUserService {
         where: { id },
         include: {
           Entidade: true,
+          endereco: true,
         },
       });
 

@@ -6,7 +6,7 @@ interface IRequest {
   tipo: string;
   assunto: string;
   texto: string;
-  arquivo: string;
+  arquivos: string[];
   audio: string;
 }
 
@@ -16,7 +16,7 @@ class RegisterSolicitationService {
     tipo,
     assunto,
     texto,
-    arquivo,
+    arquivos,
     audio,
   }: IRequest): Promise<void> {
     try {
@@ -29,7 +29,7 @@ class RegisterSolicitationService {
             create: {
               usuarioId,
               texto,
-              arquivo,
+              arquivos,
               audio,
             },
           },

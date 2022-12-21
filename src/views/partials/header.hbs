@@ -1,43 +1,22 @@
-<nav class='navbar navbar-expand-lg bg-light sticky-top'>
-  <div class='container'>
+ <div class="col">
+          <div class="profile-card-4 z-depth-3">
+          {{#if usuario}}
+            <div class="card border border-0">
+              <div class="card-body text-center bg-primary rounded-top">
+              <div class="user-box">
+                <img src="/avatar/{{usuario.image}}" alt="user avatar">
+              </div>
+              <h5 class="mb-1 text-white">{{usuario.nome}}</h5>
+              {{#usuario.Entidade}}
+                <h6 class="text-light">{{nome}}</h6>
 
-    {{!-- <div class="row">
-      <div class="col-6"></div>
-      <div class="col-6"></div>
-    </div> --}}
+              {{/usuario.Entidade}}
+            </div>
 
-    <a class='navbar-brand titulo d-flex align-items-center' href='#'>
-        {{#if usuario.image}}
-          <img
-          src='/avatar/{{usuario.image}}'
-          height='50px'
-          class="avatar"
-          />
-        {{/if}}
-        <p class="info pt-1 mb-0">
-          {{usuario.nome}} <br>
-          {{#usuario.Entidade}}
-          <small class="text-muted">{{nome}}</small>
-          {{/usuario.Entidade}}
-       </p>
-    </a>
+            </div>
 
-    <div class='d-flex'>
-      <div class='btn-group' role='group' aria-label='Basic example'>
-        <button
-          type='button'
-          class='btn btn-primary'
-          data-bs-toggle='modal'
-          data-bs-target='#staticBackdrop'
-        >
-          Fazer Solicitação
-        </button>
-        <a href='/sair' class='btn btn-outline-danger' type='button'>
-          Sair
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+          {{/if}}
+          </div>
 
-{{> modal-solicitacao}}
+</div>
+

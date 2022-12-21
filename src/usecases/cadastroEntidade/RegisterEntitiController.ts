@@ -4,18 +4,8 @@ import { RegisterEntitiService } from './RegisterEntitiService';
 
 class RegisterEntitiController {
   async create(request: Request, response: Response): Promise<void> {
-    const {
-      nome,
-      tipo,
-      detalhe,
-      telefone,
-      latitude,
-      longitude,
-      rua,
-      numero,
-      cidade,
-      uf,
-    } = request.body;
+    const { nome, tipo, detalhe, telefone, rua, numero, cidade, uf } =
+      request.body;
 
     const { id } = request.session.user;
 
@@ -23,8 +13,6 @@ class RegisterEntitiController {
     const registerEntitiService = new RegisterEntitiService();
 
     const endereco = {
-      latitude,
-      longitude,
       rua,
       numero,
       cidade,
