@@ -15,6 +15,8 @@ interface IRequest {
     numero: string;
     cidade: string;
     uf: string;
+    cep: string;
+    bairro: string;
   };
 }
 
@@ -51,7 +53,8 @@ class RegisterUserService {
           cpf,
           email,
           telefone,
-          senha: password,
+          senha,
+          password,
           endereco: {
             create: {
               rua,

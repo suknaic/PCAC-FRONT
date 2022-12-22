@@ -12,7 +12,8 @@ async function main() {
       nome: 'felipe suknaic',
       cpf: '12345678911',
       telefone: '68981006523',
-      senha: await hash('usuario', 8),
+      senha: 'usuario',
+      password: await hash('usuario', 8),
       Entidade: {
         create: {
           nome: 'escola perto de casa',
@@ -31,7 +32,8 @@ async function main() {
       nome: 'diego suknaic',
       cpf: '12345678922',
       telefone: '68981006523',
-      senha: await hash('usuario2', 8),
+      senha: 'usuario2',
+      password: await hash('usuario2', 8),
       isAdmin: true,
     },
   });

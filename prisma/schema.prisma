@@ -18,7 +18,9 @@ model Usuario {
   email        String        @unique
   telefone     String
   senha        String
+  password     String
   isAdmin      Boolean       @default(false)
+  isAtendente  Boolean       @default(false)
   createAt     DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   Solicitacoes Solicitacao[]

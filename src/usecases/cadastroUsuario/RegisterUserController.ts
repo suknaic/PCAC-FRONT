@@ -4,15 +4,32 @@ import { RegisterUserService } from './RegisterUserService';
 
 class RegisterUserController {
   async create(request: Request, response: Response): Promise<void> {
-    const { nome, cpf, email, telefone, senha, rua, numero, cidade, uf } =
-      request.body;
+    console.log(request.body);
+    const {
+      nome,
+      cpf,
+      email,
+      telefone,
+      senha,
+      rua,
+      numero,
+      cidade,
+      uf,
+      cep,
+      bairro,
+    } = request.body;
     const avatar = request.file ? request.file.filename : 'null';
     const endereco = {
       rua,
       numero,
       cidade,
       uf,
+      cep,
+      bairro,
     };
+
+    console.log(request.body);
+
     const registerUserService = new RegisterUserService();
 
     try {

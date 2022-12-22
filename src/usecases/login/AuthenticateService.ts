@@ -21,7 +21,7 @@ class AuthenticateService {
 
     if (!usuario) throw new AppError('Email ou Senha Incorreto');
 
-    const conferirSenha = await compare(password, usuario.senha);
+    const conferirSenha = await compare(password, usuario.password);
 
     if (!conferirSenha) throw new AppError('Email ou Senha Incorreto');
     return {

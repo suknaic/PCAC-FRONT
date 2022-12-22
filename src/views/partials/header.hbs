@@ -4,7 +4,9 @@
             <div class="card border border-0">
               <div class="card-body text-center bg-primary rounded-top">
               <div class="user-box">
+              {{#if usuario.image}}
                 <img src="/avatar/{{usuario.image}}" alt="user avatar">
+              {{/if}}
               </div>
               <h5 class="mb-1 text-white">{{usuario.nome}}</h5>
               {{#usuario.Entidade}}

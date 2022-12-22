@@ -4,6 +4,10 @@ body {
 
 /* User Cards */
 
+.painel {
+  max-width: 700px;
+}
+
 .user-box img {
   width: 100%;
   border-radius: 50%;
@@ -12,6 +16,7 @@ body {
 }
 
 .profile-card-4 .user-box {
+  max-width: 700px;
   width: 110px;
   margin: auto;
   margin-bottom: 10px;

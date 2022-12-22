@@ -20,10 +20,9 @@ app.use(
 );
 app.use(
   express.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
-app.use(express.json());
 
 app.use(cors());
 
