@@ -12,6 +12,8 @@
     "solicitacao",
     "solicitacoes",
     "middlewares",
-    "usecases"
+    "usecases",
+    "deletefile",
+    "removeemptyobj"
   ],
 }

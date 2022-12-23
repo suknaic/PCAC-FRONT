@@ -67,6 +67,7 @@ class RegisterUserService {
       });
       return usuario.id;
     } catch (error) {
+      console.log(error);
       throw new AppError(error.message);
     }
   }

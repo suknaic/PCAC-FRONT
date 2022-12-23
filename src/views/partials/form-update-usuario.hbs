@@ -2,7 +2,7 @@
 {{error.message}}
   {{#if usuario}}
       <form
-        action='/painel/solicitacao'
+        action='/painel/update'
         method='POST'
         class='needs-validation'
         enctype='multipart/form-data'
@@ -51,7 +51,6 @@
               name='nome'
               placeholder=''
               value='{{usuario.nome}}'
-              required=''
             />
             <div class='invalid-feedback'>
               informe seu nome completo
@@ -68,7 +67,6 @@
               id='cpf'
               name='cpf'
               value='{{usuario.cpf}}'
-              required=''
             />
             <div class='invalid-feedback'>
               Informe um cpf válido
@@ -85,7 +83,7 @@
               name='email'
               value='{{usuario.email}}'
               placeholder='email@example.com'
-              required=''
+
             />
             <div class='invalid-feedback'>
               Entre com um email válido!
@@ -103,7 +101,7 @@
               name='telefone'
               value='{{usuario.telefone}}'
               placeholder='(68) 9999-9999'
-              required=''
+
             />
             <div class='invalid-feedback'>
              Informe um telefone válido!
@@ -119,7 +117,6 @@
               id='password'
               name='senha'
               placeholder='*****'
-
             />
             <div class='invalid-feedback'>
               Insira uma senha!
@@ -144,7 +141,7 @@
               id='cep'
               name='cep'
               placeholder='xxxxx-xxx'
-              required=''
+
             />
             <div class='invalid-feedback'>
               Informe seu cep.
@@ -169,7 +166,7 @@
             <label for='estado' class='form-label'>
               Estado
             </label>
-            <select class='form-select' id='estado' name='uf' required=''>
+            <select class='form-select' id='estado' name='uf'>
               <option value='{{uf}}' selected>
                {{uf}}
               </option>
@@ -190,7 +187,7 @@
               id='rua'
               name='rua'
               placeholder='Nome da rua'
-              required=''
+
               value='{{rua}}'
             />
             <div class='invalid-feedback'>
@@ -208,7 +205,6 @@
               id='bairro'
               name='bairro'
               placeholder='Nome do bairro'
-              required=''
               value='{{bairro}}'
             />
             <div class='invalid-feedback'>
@@ -235,15 +231,11 @@
           </div>
 
         </div>
-        {{!-- <input type='hidden' name='latitude' value='' />
-        <input type='hidden' name='longitude' value='' /> --}}
-
          {{/usuario.endereco}}
         <hr class='my-4' />
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
          <button class=' btn btn-primary' type='submit'>
-          Proximo
-         <img src="/public/img/arrow-right.svg" alt="arrow right">
+          Atualizar
         </button>
         </div>
       </form>

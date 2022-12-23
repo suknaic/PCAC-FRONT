@@ -28,7 +28,7 @@ class RegisterSolicitationController {
         arquivos,
         audio,
       });
-      response.json({ message: 'success' }).status(200);
+      response.redirect('/painel');
     } catch (error) {
       console.log(error);
     }
