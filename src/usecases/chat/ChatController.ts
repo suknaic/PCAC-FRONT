@@ -1,3 +1,0 @@
-class ChatController {}
-
-export { ChatController };

@@ -2,13 +2,19 @@ import { AppError } from '@error/AppError';
 import { prismaClient } from '@prisma';
 import { Solicitacao } from '@prisma/client';
 
-class UserGetSolicitationIdService {
+class GetSolicitationService {
   async execute(solicitacaoId: string): Promise<Solicitacao> {
     try {
       const solicitacao = await prismaClient.solicitacao.findFirst({
         where: { id: solicitacaoId },
         include: {
           mensagens: true,
+          Usuario: {
+            select: {
+              image: true,
+              nome: true,
+            },
+          },
         },
       });
 
@@ -19,4 +25,4 @@ class UserGetSolicitationIdService {
   }
 }
 
-export { UserGetSolicitationIdService };
+export { GetSolicitationService };

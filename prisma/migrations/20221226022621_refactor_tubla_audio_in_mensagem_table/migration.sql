@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Mensagem" ALTER COLUMN "audio" DROP NOT NULL,
+ALTER COLUMN "audio" SET DATA TYPE TEXT;

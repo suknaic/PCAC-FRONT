@@ -23,6 +23,11 @@ class AuthenticateUserController {
   async index(request: Request, response: Response): Promise<void> {
     return response.render('index');
   }
+
+  async exit(request: Request, response: Response): Promise<void> {
+    request.session.destroy((err) => console.log(err));
+    response.redirect('/');
+  }
 }
 
 export { AuthenticateUserController };

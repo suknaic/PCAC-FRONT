@@ -4,6 +4,7 @@
   enctype='multipart/form-data'
   class='needs-validation'
   novalidate=''
+  id="form-solicitacao"
 >
   <div class='mb-3'>
     <select class='form-select' name='tipo' id='tipo' required=''>
@@ -87,78 +88,42 @@
   </div>
   <br />
 
-  <button type='submit'class='btn btn-primary'>
+  <button type='button'class='btn btn-primary' id="btnSubmit">
         Enviar Solicitação
   </button>
 </form>
 
 <script type='text/javascript'>
-  (() => {
-    function getaudio(){
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(
-      (stream) => {
 
-          mediaRecorder = new MediaRecorder(stream);
-          let chunks = [];
-          mediaRecorder.ondataavailable = data => {
-              chunks.pop();
-              chunks.push(data.data)
-          }
-          mediaRecorder.onstop = () => {
-            const blob = new Blob(chunks, { type: 'audio/webm; codecs=opus' })
-            const reader = new FileReader()
-            reader.readAsDataURL(blob)
-            reader.onloadend = async () => {
-              $('#audio-play audio').remove();
-              $('input[name="audio"]').remove();
-              const audio = document.createElement('audio')
-              audio.src = await reader.result
-              audio.controls = true
-              audio.controlsList="nodownload noplaybackrate"
-              audio.classList.add("audio");
-              $('<input>').attr({
-                  type: 'hidden',
-                  id: 'audio',
-                  name: 'audio'
-              }).val(reader.result)
-              .appendTo('#form-solicitacao');
-              $('#audio-play').append(audio);
-            }
-          }
+  jQuery(function($){
+    $('#btnSubmit').click(function(event){
+      const form = document.getElementById('form-solicitacao');
 
-      $(function(){
-        $(".audio").bind('mousedown touchstart' ,function(event){
-          $(".audio").addClass("btn-danger")
-          .removeClass("btn-success")
-          .html("<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Gravando...");
-          mediaRecorder.start();
-        });
-
-      });
-
-      $(function(){
-        $(".audio").bind('mouseup touchend', function(){
-          $(".audio").addClass("btn-success").removeClass('btn-danger')
-          .html("<img src='/public/img/mic.svg' alt='mic' />Enviar um Audio");
-          mediaRecorder.stop();
-        });
-      });
-
-
-      },
-      (err) => {
-        if(err.name == 'NotAllowedError') {
-          $('.error-audio').append('<p class="text-danger">Você deve permitir o uso do Microfone ')
-          navigator.permissions.query({ name: 'microphone' }).then((permissionStatus) => {
-                permissionStatus.onchange = () => {
-                  document.location.reload();
-                };
-              });
+       if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
         } else {
-        $('.audio').remove();
+          $(this).addClass("disabled").html('Enviando   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
+          $.ajax({
+            type: "POST",
+            url: "/painel/solicitacao",
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            cache: false,
+          }).done(function (data) {
+            form.classList.remove('was-validated');
+            $('#audio-play audio').remove();
+            $(form).trigger('reset');
+            alert('Solicitação Cadastrada com Sucesso!', 'success')
+            $('#menu #pills-home-tab').on('show.bs.tab', function(){
+              document.location.reload();
+            });
+          });
+         $(this).removeClass("disabled").html('Enviar Solicitação')
         }
-      });
-      }
-      getaudio();
-  })();
+        form.classList.add('was-validated');
+        event.preventDefault();
+    });
+  });
 </script>

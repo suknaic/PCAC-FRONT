@@ -7,6 +7,7 @@
         class='needs-validation'
         enctype='multipart/form-data'
         novalidate=''
+        id="form-update"
       >
         <div class='row g-3'>
           <div class='col-12'>
@@ -148,21 +149,7 @@
             </div>
           </div>
 
-           <div class='col-6'>
-            <label for='cidade' class='form-label'>
-              Cidade
-            </label>
-            <select class='form-select' id='cidade' name='cidade' required=''>
-              <option value='{{cidade}}' selected>
-                {{cidade}}
-              </option>
-            </select>
-            <div class='invalid-feedback'>
-              Selecione a Cidade!
-            </div>
-          </div>
-
-          <div class='col-3'>
+           <div class='col-3'>
             <label for='estado' class='form-label'>
               Estado
             </label>
@@ -177,6 +164,22 @@
             </div>
           </div>
 
+           <div class='col-6'>
+            <label for='cidade' class='form-label'>
+              Cidade
+            </label>
+            <select class='form-select' id='cidade' name='cidade' required=''>
+              <option value='{{cidade}}' selected>
+                {{cidade}}
+              </option>
+            </select>
+            <div class='invalid-feedback'>
+              Selecione a Cidade!
+            </div>
+          </div>
+
+
+
            <div class='col-5'>
             <label for='rua' class='form-label'>
               Rua
@@ -187,7 +190,6 @@
               id='rua'
               name='rua'
               placeholder='Nome da rua'
-
               value='{{rua}}'
             />
             <div class='invalid-feedback'>
@@ -234,15 +236,39 @@
          {{/usuario.endereco}}
         <hr class='my-4' />
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-         <button class=' btn btn-primary' type='submit'>
+         <button class=' btn btn-primary' type='button' id="btnUpdate">
           Atualizar
         </button>
         </div>
       </form>
   {{/if}}
 
+  <script type='text/javascript'>
+  jQuery(function($){
+    $('#btnUpdate').click(function(event){
+       const form = document.getElementById('form-update');
+       if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          $(this).addClass("disabled").html('<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
+          $.ajax({
+            type: "POST",
+            url: "/painel/update",
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            cache: false,
+          }).done(function (data) {
+            form.classList.remove('was-validated');
+            $(form).trigger('reset');
+            document.location.reload();
+          });
+        }
+        form.classList.add('was-validated');
+        event.preventDefault();
+    });
+  });
+</script>
 
-<script src="/public/js/validaformulario.js"></script>
-<script src="/public/js/mask.js"></script>
-<script src="/public/js/consultacep.js"></script>
-<script src="/public/js/getcidade.js"></script>
+

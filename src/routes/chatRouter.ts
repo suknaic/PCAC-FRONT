@@ -1,15 +1,16 @@
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
 
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
+import { SolicitationController } from '../usecases/Solicitations/SolicitationController';
 
 const chatRouter = Router();
+
+const solicitationController = new SolicitationController();
 
 chatRouter.get(
   '/painel/solicitacao/:id',
   ensureAuthenticated,
-  (request: Request, response: Response) => {
-    response.render('chat');
-  }
+  solicitationController.get
 );
 
 export { chatRouter };

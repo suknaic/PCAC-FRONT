@@ -17,6 +17,11 @@
 
                         <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Editar Perfil</button>
                     </li>
+                    <li class="nav-item" hidden>
+
+                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-solicitacao" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Editar Perfil</button>
+                    </li>
+
                     <li class="nav-item ">
                         <a href="/sair" class="nav-link link-danger"><i class="icon-note"></i> <span class="hidden-xs">SAIR</span></a>
                     </li>
@@ -32,17 +37,22 @@
                             {{#each solicitacoes as |solicitacao|}}
                               {{#if solicitacao.respondida}}
                                 <tr class="table-active bg-primary text-light">
-                                      <td>
-                                        <span class="float-left font-weight-bold pl-5"> {{dateFormat solicitacao.updatedAt}}</span> {{solicitacao.assunto}}
-                                      </td>
+                                <a href="#solicitacao" class="nav-link" id="{{solicitacao.id}}">
+                                 <td>
+                                    <span class="font-weight-bold data"> {{dateFormat solicitacao.updatedAt}}</span class="titulo"> <span>{{solicitacao.assunto}}
+                                  </td>
+                                </a>
                                 </tr>
                               {{/if}}
                               {{/each}}
                               {{#each solicitacoes as |solicitacao|}}
                                 {{#unless solicitacao.respondida}}
-                                    <tr>
+                                    <tr class="">
                                       <td>
-                                        <span class="float-right font-weight-bold"> {{dateFormat solicitacao.updatedAt}}</span> {{solicitacao.assunto}}
+                                      <a href="/painel/solicitacao/{{solicitacao.id}}" class="nav-link" id="{{solicitacao.id}}">
+                                        <span class="font-weight-bold data"> {{dateFormat solicitacao.updatedAt}}</span class="titulo"> <span>{{solicitacao.assunto}}
+                                        </span>
+                                      </a>
                                       </td>
                                     </tr>
                                 {{/unless}}
@@ -65,11 +75,30 @@
                        {{>form-solicitacao}}
 
                   </div>
-                  <div <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
+                  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
                     <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span>Editar Minhas Informações</h5>
                       {{>form-update-usuario}}
+                  </div>
+                  <div class="tab-pane fade" id="pills-solicitacao" role="tabpanel" aria-labelledby="pills-solicitacao-tab" tabindex="0">
+                    <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span>Editar Minhas Informações</h5>
+                      ola mundo
                   </div>
               </div>
           </div>
   </div>
+          {{>footer}}
 </div>
+{{!--
+<script>
+ function mostraTab(e){
+    e.stopPropagation();
+    const id = $(this).attr('href');
+    $('#menu button[data-bs-target="#pills-solicitacao"]').on('show.bs.tab', function(){
+      console.log(id)
+    });
+
+
+    $('#menu button[data-bs-target="#pills-solicitacao"]').tab('show');
+  }
+
+</script> --}}

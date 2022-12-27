@@ -1,19 +1,19 @@
 import { Router } from 'express';
 
+import { authenticateRouter } from './authenticate';
 import { chatRouter } from './chatRouter';
-import { loginRoutes } from './loginRouter';
-import { logoutRouter } from './logoutRouter';
 import { painelRouter } from './painelRouter';
 import { registerEntitiRouter } from './registerEntitiRouter';
-import { registerUserRouter } from './registerUserRouter';
+import { solicitationsRouter } from './SolicitationRouter';
+import { usersRouter } from './UsersRouter';
 
 const routers = Router();
 
-routers.use(loginRoutes);
-routers.use(chatRouter);
-routers.use(logoutRouter);
+routers.use(usersRouter);
+routers.use(authenticateRouter);
 routers.use(painelRouter);
-routers.use(registerUserRouter);
+routers.use(chatRouter);
 routers.use(registerEntitiRouter);
+routers.use(solicitationsRouter);
 
 export { routers };

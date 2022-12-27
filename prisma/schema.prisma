@@ -72,7 +72,7 @@ model Solicitacao {
 model Mensagem {
   id            String       @id @default(uuid())
   texto         String?
-  audio         String[]
+  audio         String?
   arquivos      String[]
   Solicitacao   Solicitacao? @relation(fields: [solicitacaoId], references: [id])
   solicitacaoId String

@@ -1,0 +1,156 @@
+<div class="container">
+  <div class="row align-items-center">
+
+          <div class="col">
+            <div class="card">
+               <div class="card-body">
+                <ul class="nav nav-pills justify-content-between align-items-center" id="menu" role="tablist">
+               <h5 class="mt-2 mb-3">{{solicitacao.assunto}} </h5>
+                    <li class="nav-item ">
+                        <a href="/painel" class="nav-link link-danger">
+                         <span class="hidden-xs">VOLTAR</span>
+
+                          <img style="" src="/public/img/arrow-right.svg" alt="voltar">
+                         </a>
+                    </li>
+                </ul>
+                <div class="tab-content p-3" id="menuContent">
+                  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+                    <div class="row">
+                      <div class="col-md-12">
+                        {{#if solicitacao}}
+
+
+                            <div class="chat_window">
+                                <ul class="messages">
+
+                                  <li class="message left appeared">
+                                      <div class="avatar"></div>
+                                      <div class="text_wrapper">
+                                          <div class="text">mensagem da atendente</div>
+                                      </div>
+                                  </li>
+
+''
+                                    {{#each solicitacao.mensagens as | mensagem | }}
+                                    <li class="message right appeared">
+                                          <div class="avatar">
+                                            <img class="avatar" src="/avatar/{{../solicitacao.Usuario.image}}" />
+                                          </div>
+                                          <div class="text_wrapper">
+                                              <div class="text">{{mensagem.texto}}</div>
+
+                                              {{#if mensagem.audio}}
+                                              <audio src="{{mensagem.audio}}" preload controls="controls" autobuffer ></audio>
+                                              {{/if}}
+
+                                              <div class="clearfix"></div>
+                                              {{#if mensagem.arquivos}}
+                                                {{#each mensagem.arquivos as |arquivo|}}
+                                                  <img style="max-height:150px" src="/solicitacao/{{arquivo}}">
+                                                {{/each}}
+                                              {{/if}}
+                                          </div>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                <div class="bottom_wrapper clearfix">
+
+                                <form
+                                action='/chat/solicitacao/{{solicitacao.id}}'
+                                method='POST'
+                                enctype='multipart/form-data'
+                                class='needs-validation'
+                                novalidate=''
+                                id="form-solicitacao"
+                                >
+                                <div class='mb-3'>
+                                <textarea
+                                class='form-control'
+                                name='texto'
+                                id='descricao'
+                                placeholder='Messagem'
+                                style="height: 100px"
+                                ></textarea>
+                                </div>
+                                <div class=''>
+                                <label for='arquivo' class='form-label text-primary fw-semibold'>
+                                * Anexe imagem(s) ou arquivos PDF
+                                <small class='text-muted'>
+                                (opcional)
+                                </small>
+                                </label>
+                                <input
+                                class='form-control'
+                                type='file'
+                                name='arquivos'
+                                id='arquivo'
+                                multiple
+                                />
+                                </div>
+                                <div class='d-grid mt-3'>
+                                <div id='audio-play' class='d-grid gap-2 mb-3'></div>
+                                <div class='error-audio'></div>
+                                <label class='form-label text-danger'>
+
+                                *Mantenha o botao prescionado para iniciar a gravação.
+                                </label>
+                                <button type='button' class='btn btn-success btn-lg audio'>
+                                <img src='/public/img/mic.svg' alt='mic' />
+                                Enviar um Audio
+                                </button>
+                                </div>
+                                <br />
+                                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type='button'class='btn btn-primary btn-lg' id="btnSubmit">
+                                    Enviar Solicitação
+                                    </button>
+                                  </div>
+                                </form>
+
+                                </div>
+                            </div>
+
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+  </div>
+          {{>footer}}
+</div>
+
+
+<script type='text/javascript'>
+
+  jQuery(function($){
+    $('#btnSubmit').click(function(event){
+      const form = document.getElementById('form-solicitacao');
+
+       if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          $(this).addClass("disabled").html('Enviando   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
+          $.ajax({
+            type: "POST",
+            url: $(form).attr('action'),
+            data: new FormData(form),
+            contentType: false,
+            processData: false,
+            cache: false,
+          }).done(function (data) {
+            form.classList.remove('was-validated');
+            $('#audio-play audio').remove();
+            $(form).trigger('reset');
+            document.location.reload();
+          });
+         $(this).removeClass("disabled").html('Enviar Solicitação')
+        }
+        form.classList.add('was-validated');
+        event.preventDefault();
+    });
+  });
+</script>
+
