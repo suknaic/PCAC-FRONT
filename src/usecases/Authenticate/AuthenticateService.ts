@@ -10,6 +10,8 @@ interface IRequest {
 interface IResponse {
   usuario: {
     id: string;
+    isAdmin: boolean;
+    isAttend: boolean;
   };
 }
 
@@ -27,6 +29,8 @@ class AuthenticateService {
     return {
       usuario: {
         id: usuario.id,
+        isAdmin: usuario.isAdmin,
+        isAttend: usuario.isAttend,
       },
     };
   }

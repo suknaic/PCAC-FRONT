@@ -103,7 +103,7 @@
           event.preventDefault();
           event.stopPropagation();
         } else {
-          $(this).addClass("disabled").html('Enviando   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
+          $('#btnSubmit').addClass("disabled").html('Enviando   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
           $.ajax({
             type: "POST",
             url: "/painel/solicitacao",
@@ -120,7 +120,7 @@
               document.location.reload();
             });
           });
-         $(this).removeClass("disabled").html('Enviar Solicitação')
+         $('#btnSubmit').removeClass("disabled").html('Enviar Solicitação')
         }
         form.classList.add('was-validated');
         event.preventDefault();

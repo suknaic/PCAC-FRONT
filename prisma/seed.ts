@@ -8,6 +8,7 @@ async function main() {
     where: { email: 'usuario@usuario.com' },
     update: {},
     create: {
+      image: '5c0dc865b11414f04c406de760a91fea-cachorro.jpg',
       email: 'usuario@usuario.com',
       nome: 'felipe suknaic',
       cpf: '12345678911',
@@ -16,7 +17,7 @@ async function main() {
       password: await hash('usuario', 8),
       Entidade: {
         create: {
-          nome: 'escola perto de casa',
+          nome: 'CASA DE ACOLHIMENTO DE ANIMAIS',
           tipo: 'escola',
           detalhe: 'perto de casa toda verde',
         },
@@ -28,17 +29,34 @@ async function main() {
     where: { email: 'usuario2@usuario2.com' },
     update: {},
     create: {
-      email: 'usuario2@usuario2.com',
-      nome: 'diego suknaic',
+      image: '246a077059539eecffda5e6253eaeb83-avatar.jpg',
+      email: 'admin@admin.com',
+      nome: 'Diego suknaic',
       cpf: '12345678922',
       telefone: '68981006523',
-      senha: 'usuario2',
-      password: await hash('usuario2', 8),
+      senha: 'usuario',
+      password: await hash('usuario', 8),
       isAdmin: true,
     },
   });
 
-  console.log({ admin, usuario });
+  const atendente = await prisma.usuario.upsert({
+    where: { email: 'usuario2@usuario2.com' },
+    update: {},
+    create: {
+      image: '246a077059539eecffda5e6253eaeb83-avatar.jpg',
+      email: 'admin@admin.com',
+      nome: 'Diego suknaic',
+      cpf: '12345678922',
+      telefone: '68981006523',
+      senha: 'usuario',
+      password: await hash('usuario', 8),
+      isAdmin: false,
+      isAttend: true,
+    },
+  });
+
+  console.log({ admin, usuario, atendente });
 }
 main()
   .then(async () => {

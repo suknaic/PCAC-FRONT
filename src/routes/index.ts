@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
-import { authenticateRouter } from './authenticate';
+import { atendimentoRouter } from './atendimentoRouter';
+import { authenticateRouter } from './authenticateRouter';
 import { chatRouter } from './chatRouter';
 import { painelRouter } from './painelRouter';
 import { registerEntitiRouter } from './registerEntitiRouter';
@@ -12,6 +13,7 @@ const routers = Router();
 routers.use(usersRouter);
 routers.use(authenticateRouter);
 routers.use(painelRouter);
+routers.use(atendimentoRouter);
 routers.use(chatRouter);
 routers.use(registerEntitiRouter);
 routers.use(solicitationsRouter);

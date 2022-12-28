@@ -1,4 +1,5 @@
 import session from 'express-session';
+import { PaginateFunction } from 'prisma-pagination';
 
 declare module 'express-session' {
   // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -6,5 +7,14 @@ declare module 'express-session' {
     user: {
       id: string;
     };
+  }
+}
+
+declare global {
+  namespace Express {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    export interface Request {
+      paginate: PaginateFunction;
+    }
   }
 }

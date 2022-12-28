@@ -15,6 +15,9 @@ class AuthenticateUserController {
         id: usuario.id,
       };
       delete usuario.id;
+
+      if (usuario.isAttend) response.redirect('atendimento');
+      if (usuario.isAdmin) response.redirect('dashboard');
       response.redirect('painel');
     } catch (error) {
       response.render('index', { error });
