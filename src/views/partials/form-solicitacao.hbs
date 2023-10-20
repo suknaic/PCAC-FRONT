@@ -1,5 +1,5 @@
 <form
-  action='/painel/solicitacao'
+  action='/solicitacao'
   method='POST'
   enctype='multipart/form-data'
   class='needs-validation'
@@ -106,7 +106,7 @@
           $('#btnSubmit').addClass("disabled").html('Enviando   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>')
           $.ajax({
             type: "POST",
-            url: "/painel/solicitacao",
+            url: $(form).attr('action'),
             data: new FormData(form),
             contentType: false,
             processData: false,

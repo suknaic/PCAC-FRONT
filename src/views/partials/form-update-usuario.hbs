@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="/public/css/upload-form.css">
-{{error.message}}
-  {{#if usuario}}
+  {{#if this}}
       <form
         action='/painel/update'
         method='POST'
@@ -51,7 +50,7 @@
               id='nomecompleto'
               name='nome'
               placeholder=''
-              value='{{usuario.nome}}'
+              value='{{this.nome}}'
             />
             <div class='invalid-feedback'>
               informe seu nome completo
@@ -67,7 +66,7 @@
               class='form-control'
               id='cpf'
               name='cpf'
-              value='{{usuario.cpf}}'
+              value='{{this.cpf}}'
             />
             <div class='invalid-feedback'>
               Informe um cpf válido
@@ -82,7 +81,7 @@
               class='form-control'
               id='email'
               name='email'
-              value='{{usuario.email}}'
+              value='{{this.email}}'
               placeholder='email@example.com'
 
             />
@@ -100,7 +99,7 @@
               class='form-control'
               id='telefone'
               name='telefone'
-              value='{{usuario.telefone}}'
+              value='{{this.telefone}}'
               placeholder='(68) 9999-9999'
 
             />
@@ -125,116 +124,117 @@
           </div>
 
           <hr class='my-4' />
-          {{#usuario.endereco}}
+          {{#if this.endereco}}
+            {{#this.endereco}}
+              <h5 class='titulo'>
+                Endereço
+              </h5>
 
-          <h5 class='titulo'>
-            Endereço
-          </h5>
+              <div class='col-3'>
+                <label for='cep' class='form-label'>
+                  cep
+                </label>
+                <input
+                  value='{{cep}}'
+                  type='text'
+                  class='form-control'
+                  id='cep'
+                  name='cep'
+                  placeholder='xxxxx-xxx'
 
-          <div class='col-3'>
-            <label for='cep' class='form-label'>
-              cep
-            </label>
-            <input
-              value='{{cep}}'
-              type='text'
-              class='form-control'
-              id='cep'
-              name='cep'
-              placeholder='xxxxx-xxx'
+                />
+                <div class='invalid-feedback'>
+                  Informe seu cep.
+                </div>
+              </div>
 
-            />
-            <div class='invalid-feedback'>
-              Informe seu cep.
-            </div>
-          </div>
+              <div class='col-3'>
+                <label for='estado' class='form-label'>
+                  Estado
+                </label>
+                <select class='form-select' id='estado' name='uf'>
+                  <option value='{{uf}}' selected>
+                  {{uf}}
+                  </option>
 
-           <div class='col-3'>
-            <label for='estado' class='form-label'>
-              Estado
-            </label>
-            <select class='form-select' id='estado' name='uf'>
-              <option value='{{uf}}' selected>
-               {{uf}}
-              </option>
+                </select>
+                <div class='invalid-feedback'>
+                  Selecione o Estado!
+                </div>
+              </div>
 
-            </select>
-            <div class='invalid-feedback'>
-              Selecione o Estado!
-            </div>
-          </div>
-
-           <div class='col-6'>
-            <label for='cidade' class='form-label'>
-              Cidade
-            </label>
-            <select class='form-select' id='cidade' name='cidade' required=''>
-              <option value='{{cidade}}' selected>
-                {{cidade}}
-              </option>
-            </select>
-            <div class='invalid-feedback'>
-              Selecione a Cidade!
-            </div>
-          </div>
+              <div class='col-6'>
+                <label for='cidade' class='form-label'>
+                  Cidade
+                </label>
+                <select class='form-select' id='cidade' name='cidade' required=''>
+                  <option value='{{cidade}}' selected>
+                    {{cidade}}
+                  </option>
+                </select>
+                <div class='invalid-feedback'>
+                  Selecione a Cidade!
+                </div>
+              </div>
 
 
 
-           <div class='col-5'>
-            <label for='rua' class='form-label'>
-              Rua
-            </label>
-            <input
-              type='text'
-              class='form-control'
-              id='rua'
-              name='rua'
-              placeholder='Nome da rua'
-              value='{{rua}}'
-            />
-            <div class='invalid-feedback'>
-              Informe o nome da rua.
-            </div>
-          </div>
+              <div class='col-5'>
+                <label for='rua' class='form-label'>
+                  Rua
+                </label>
+                <input
+                  type='text'
+                  class='form-control'
+                  id='rua'
+                  name='rua'
+                  placeholder='Nome da rua'
+                  value='{{rua}}'
+                />
+                <div class='invalid-feedback'>
+                  Informe o nome da rua.
+                </div>
+              </div>
 
-          <div class='col-5'>
-            <label for='bairro' class='form-label'>
-              Bairro
-            </label>
-            <input
-              type='text'
-              class='form-control'
-              id='bairro'
-              name='bairro'
-              placeholder='Nome do bairro'
-              value='{{bairro}}'
-            />
-            <div class='invalid-feedback'>
-              Informe o nome do Bairro.
-            </div>
-          </div>
+              <div class='col-5'>
+                <label for='bairro' class='form-label'>
+                  Bairro
+                </label>
+                <input
+                  type='text'
+                  class='form-control'
+                  id='bairro'
+                  name='bairro'
+                  placeholder='Nome do bairro'
+                  value='{{bairro}}'
+                />
+                <div class='invalid-feedback'>
+                  Informe o nome do Bairro.
+                </div>
+              </div>
 
-          <div class='col-2'>
-            <label for='numero' class='form-label'>
-              Número
-            </label>
-            <input
-              type='text'
-              class='form-control'
-              id='numero'
-              name='numero'
-              placeholder='1111'
-              required=''
-              value='{{numero}}'
-            />
-            <div class='invalid-feedback'>
-              Informe o número
-            </div>
-          </div>
+              <div class='col-2'>
+                <label for='numero' class='form-label'>
+                  Número
+                </label>
+                <input
+                  type='text'
+                  class='form-control'
+                  id='numero'
+                  name='numero'
+                  placeholder='1111'
+                  required=''
+                  value='{{numero}}'
+                />
+                <div class='invalid-feedback'>
+                  Informe o número
+                </div>
+              </div>
 
-        </div>
-         {{/usuario.endereco}}
+              </div>
+            {{/this.endereco}}
         <hr class='my-4' />
+          {{/if}}
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
          <button class=' btn btn-primary' type='button' id="btnUpdate">
           Atualizar

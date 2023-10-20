@@ -1,16 +1,21 @@
-import { prismaClient } from '@prisma';
 import { Request, Response } from 'express';
 
-import { GetSolicitations } from './GetSolicitations';
+import { GetAtendenteService } from './GetAtendenteService';
+import { GetSolicitationsService } from './GetSolicitationsService';
 
 class AtendimentoController {
   async index(request: Request, response: Response): Promise<void> {
-    const getSolicitacoes = new GetSolicitations();
+    const { id } = request.session.user;
+    const getSolicitationsService = new GetSolicitationsService();
+    const getAtendenteService = new GetAtendenteService();
 
     try {
-      const solicitacoes = await getSolicitacoes.execute(request);
+      const solicitacoes = await getSolicitationsService.execute(request);
+      const usuario = await getAtendenteService.execute(id);
+
       console.log(solicitacoes);
-      response.render('atendimento', { solicitacoes });
+
+      response.render('atendimento', { solicitacoes, usuario });
     } catch (error) {
       console.log(error);
     }

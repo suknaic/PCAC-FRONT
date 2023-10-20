@@ -20,7 +20,7 @@ class GetSolicitationService {
 
       return solicitacao;
     } catch (error) {
-      throw new AppError(`${error.message}`);
+      throw new AppError(error.message);
     }
   }
 }

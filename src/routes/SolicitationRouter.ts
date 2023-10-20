@@ -19,7 +19,7 @@ solicitationsRouter.post(
 );
 
 solicitationsRouter.post(
-  '/painel/solicitacao',
+  '/solicitacao',
   ensureAuthenticated,
   files.array('arquivos'),
   solicitationController.create

@@ -25,8 +25,23 @@
                     <div class="row">
                       <div class="col-md-12">
                         <h5 class="mt-2 mb-3">Solicitações</h5>
-                          {{>lista-solicitacao}}
                         {{#if solicitacoes}}
+                          {{>lista-solicitacao solicitacoes}}
+                        {{else}}
+                          <div class="row pb-5 text-light">
+                            <div class="col-12 text-center">
+                              <img src="/public/img/solicitacao.svg" alt="solicitação" class="mt-5 mb-3">
+                              <h4 class="text-primary">Nenhuma solicitação por aqui...</h4>
+                            </div>
+                          </div>
+                        {{/if}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+                      <h5 class="mt-2 mb-3">Meus Atendimentos</h5>
+                      {{#if solicitacoes}}
+                          {{>lista-solicitacao atendimentos}}
                         {{else}}
                               <div class="row pb-5 text-light">
                                 <div class="col-12 text-center">
@@ -35,21 +50,15 @@
                                 </div>
                               </div>
                         {{/if}}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                      <h5 class="mt-2 mb-3">Criar Nova Solicitações</h5>
-                       {{>form-solicitacao}}
 
                   </div>
                   <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">
                     <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span>Editar Minhas Informações</h5>
-                      {{>form-update-usuario}}
+                    {{>form-update-usuario usuario}}
                   </div>
               </div>
           </div>
   </div>
-          {{>footer}}
 </div>
+          {{>footer}}
 

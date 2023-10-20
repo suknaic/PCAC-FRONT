@@ -13,7 +13,7 @@ interface IPaginatedResult<T> {
   };
 }
 
-class GetSolicitations {
+class GetSolicitationsService {
   async execute(request: Request): Promise<IPaginatedResult<unknown>> {
     const solicitacoes = await request.paginate(prismaClient.solicitacao, {
       where: {
@@ -45,4 +45,4 @@ class GetSolicitations {
   }
 }
 
-export { GetSolicitations };
+export { GetSolicitationsService };

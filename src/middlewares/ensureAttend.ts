@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { prismaClient } from '../prisma';
 
-async function ensureAdmin(
+async function ensureAttend(
   request: Request,
   response: Response,
   next: NextFunction
@@ -11,11 +11,11 @@ async function ensureAdmin(
   if (!user) return response.redirect('/');
 
   const usuario = await prismaClient.usuario.findFirst({
-    where: { id: user.id, isAdmin: true },
+    where: { id: user.id, isAttend: true },
   });
 
   if (!usuario) return response.redirect('/');
   return next();
 }
 
-export { ensureAdmin };
+export { ensureAttend };
